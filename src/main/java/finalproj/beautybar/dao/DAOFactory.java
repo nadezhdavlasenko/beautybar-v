@@ -4,6 +4,6 @@ import finalproj.beautybar.dao.impl.RoleDAOImpl;
 
 public class DAOFactory {
     public static IRoleDAO getRoleDAO(){
-        return new RoleDAOImpl();
+        return RoleDAOImpl.getRoleDAO();
     }
 }
