@@ -1,5 +1,6 @@
 package finalproj.beautybar.dao.impl;
 
+import finalproj.beautybar.dao.AbstractDAO;
 import finalproj.beautybar.dao.IRoleDAO;
 import finalproj.beautybar.entity.Role;
 import finalproj.beautybar.pool.ConnectionPool;
@@ -11,12 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDAOImpl implements IRoleDAO {
-
-    protected final String SQL_SELECT = "SELECT * FROM " + getTableName();
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName();
-    protected final String SQL_INSERT = "INSERT INTO " + getTableName();
-    protected final String SQL_UPDATE = "UPDATE " + getTableName();
+public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
 
     protected static final int COLUMN_ROLEID = 1;
     protected static final int COLUMN_TYPENAME = 2;
@@ -31,12 +27,12 @@ public class RoleDAOImpl implements IRoleDAO {
 
     @Override
     public List<Role> findAll() throws Exception {
-        return findByDynamicSelect(SQL_SELECT, null);
+        return findByDynamicSelect(SQL_SELECT_FROM, null);
     }
 
     @Override
     public Role findEntityById(Long id) throws Exception {
-        return  findOneByDynamicSelect(SQL_SELECT + " WHERE IDROLE = ?", new Object[]{id}); }
+        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDROLE = ?", new Object[]{id}); }
 
     @Override
     public Boolean delete(Long id) throws Exception {
@@ -117,60 +113,60 @@ public class RoleDAOImpl implements IRoleDAO {
         return "role";
     }
 
-    public List<Role> findByDynamicSelect(String sql, Object[] sqlParams) throws Exception {
-        // declare variables
-        List<Role> entities = new ArrayList<>();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            connection = ConnectionPool.getConnection();
-            final String SQL = sql;
-            System.out.println("Executing " + SQL);
-            // prepare statement
-            statement = connection.prepareStatement(SQL);
-            // bind parameters
-            for (int i = 0; sqlParams != null && i < sqlParams.length; i++) {
-                statement.setObject(i + 1, sqlParams[i]);
-            }
-            resultSet = statement.executeQuery();
-            // fetch the results
-            return fetchMultiResults(resultSet);
-        } catch (Exception ex) {
-            //logger.error(ex, ex);
-            throw new Exception("Exception: " + ex.getMessage(), ex);
-        } finally {
-            connection.close();
-        }
-
-    }
-
-    public Role findOneByDynamicSelect(String sql, Object[] sqlParams) throws Exception {
-        // declare variables
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            connection = ConnectionPool.getConnection();
-            final String SQL = sql;
-            System.out.println("Executing " + SQL);
-            // prepare statement
-            statement = connection.prepareStatement(SQL);
-            // bind parameters
-            for (int i = 0; sqlParams != null && i < sqlParams.length; i++) {
-                statement.setObject(i + 1, sqlParams[i]);
-            }
-            resultSet = statement.executeQuery();
-            // fetch the results
-            return fetchSingleResult(resultSet);
-        } catch (Exception ex) {
-            //logger.error(ex, ex);
-            throw new Exception("Exception: " + ex.getMessage(), ex);
-        } finally {
-            connection.close();
-        }
-
-    }
+//    public List<Role> findByDynamicSelect(String sql, Object[] sqlParams) throws Exception {
+//        // declare variables
+//        List<Role> entities = new ArrayList<>();
+//        Connection connection = null;
+//        PreparedStatement statement = null;
+//        ResultSet resultSet = null;
+//        try {
+//            connection = ConnectionPool.getConnection();
+//            final String SQL = sql;
+//            System.out.println("Executing " + SQL);
+//            // prepare statement
+//            statement = connection.prepareStatement(SQL);
+//            // bind parameters
+//            for (int i = 0; sqlParams != null && i < sqlParams.length; i++) {
+//                statement.setObject(i + 1, sqlParams[i]);
+//            }
+//            resultSet = statement.executeQuery();
+//            // fetch the results
+//            return fetchMultiResults(resultSet);
+//        } catch (Exception ex) {
+//            //logger.error(ex, ex);
+//            throw new Exception("Exception: " + ex.getMessage(), ex);
+//        } finally {
+//            connection.close();
+//        }
+//
+//    }
+//
+//    public Role findOneByDynamicSelect(String sql, Object[] sqlParams) throws Exception {
+//        // declare variables
+//        Connection connection = null;
+//        PreparedStatement statement = null;
+//        ResultSet resultSet = null;
+//        try {
+//            connection = ConnectionPool.getConnection();
+//            final String SQL = sql;
+//            System.out.println("Executing " + SQL);
+//            // prepare statement
+//            statement = connection.prepareStatement(SQL);
+//            // bind parameters
+//            for (int i = 0; sqlParams != null && i < sqlParams.length; i++) {
+//                statement.setObject(i + 1, sqlParams[i]);
+//            }
+//            resultSet = statement.executeQuery();
+//            // fetch the results
+//            return fetchSingleResult(resultSet);
+//        } catch (Exception ex) {
+//            //logger.error(ex, ex);
+//            throw new Exception("Exception: " + ex.getMessage(), ex);
+//        } finally {
+//            connection.close();
+//        }
+//
+//    }
 
     protected List<Role> fetchMultiResults(ResultSet resultSet) throws SQLException {
         List<Role> resultList = new ArrayList();

@@ -11,6 +11,9 @@ public class Worker extends Entity {
     private String passwordHash;
     private String salt;
 
+    public Worker() {
+    }
+
     public Worker(Role role, String name, String email, String phone, String passwordHash, String salt) {
         this.role = role;
         this.name = name;
