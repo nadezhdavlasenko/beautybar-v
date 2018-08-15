@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractDAO <K, T extends Entity> {
+public abstract class AbstractDAO <K, T extends Entity>{
 
  protected final String SQL_SELECT_FROM = "SELECT * FROM " + getTableName();
  protected final String SQL_DELETE = "DELETE FROM " + getTableName();

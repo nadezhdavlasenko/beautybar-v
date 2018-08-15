@@ -123,7 +123,7 @@ public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements IScedu
         try {
             connection = ConnectionPool.getConnection();
             final String SQL = SQL_UPDATE + " SET `idmaster`= ?, `start_mon`= ?, `end_mon`= ?, " +
-                    "`start_tue`, `end_tue`= ?, `start_wed`= ?, `end_wed`= ?, `start_thu`= ?, " +
+                    "`start_tue`= ?, `end_tue`= ?, `start_wed`= ?, `end_wed`= ?, `start_thu`= ?, " +
                     "`end_thu`= ?, `start_fri`= ?, `end_fri`= ?, `start_sat`= ?, `end_sat`= ?," +
                     " `start_sun`= ?, `end_sun`= ? WHERE `idscedule`= ?";
             System.out.println("Executing " + SQL);
@@ -174,7 +174,7 @@ public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements IScedu
         worker.setPhone(resultSet.getString(COLUMN_WORKER_PHONE));
         worker.setPasswordHash(resultSet.getString(COLUMN_WORKER_PASSWORD_HASH));
         worker.setSalt(resultSet.getString(COLUMN_WORKER_SALT));
-        worker.setId(resultSet.getLong(COLUMN_SCEDULEID));
+        worker.setId(resultSet.getLong(COLUMN_WORKER_WORKERID));
 
         entity.setWorker(worker);
         entity.setStartMon(resultSet.getTime(COLUMN_START_MON));

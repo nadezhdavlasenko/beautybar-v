@@ -33,5 +33,12 @@ public class DAOFactory {
         return ClientDAOImpl.getClientDAO();
     }
 
+    public static IFeedbackDAO getFeedbackDAO(){
+        return FeedbackDAOImpl.getFeedbackDAO();
+    }
+
+    public static IBookingDAO getBookingDAO(){
+        return BookingDAOImpl.getBookingDAO();
+    }
 
 }
