@@ -34,12 +34,12 @@ public class ServiceDAOImpl extends AbstractDAO<Long,Service> implements IServic
 
     @Override
     public List<Service> findAll() throws Exception {
-        return null;
+        return findByDynamicSelect(SQL_SELECT_FROM + SQL_INNER_JOIN, null);
     }
 
     @Override
     public Service findEntityById(Long id) throws Exception {
-        return null;
+        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDSERVICE = ?" + SQL_INNER_JOIN, new Object[]{id});
     }
 
     @Override

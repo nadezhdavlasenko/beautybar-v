@@ -15,7 +15,8 @@ import java.util.List;
 
 public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements ISceduleDAO {
 
-    private static final String SQL_INNER_JOIN = " INNER JOIN worker ON scedule.idmaster=worker.idworker INNER JOIN role ON worker.idrole = role.idrole;";
+    private static final String SQL_INNER_JOIN = " INNER JOIN worker ON scedule.idmaster=worker.idworker" +
+            " INNER JOIN role ON worker.idrole = role.idrole;";
 
     protected static final int COLUMN_SCEDULEID = 1;
     protected static final int COLUMN_MASTERID = 2;

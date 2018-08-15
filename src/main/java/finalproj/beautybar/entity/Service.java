@@ -10,6 +10,10 @@ public class Service extends Entity {
 
     public Service(){}
 
+    public Service(Long id) {
+        super(id);
+    }
+
     public Service(String name, Integer duration, ServiceType serviceType) {
         this.name = name;
         this.duration = duration;

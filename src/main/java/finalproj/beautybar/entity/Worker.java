@@ -13,6 +13,9 @@ public class Worker extends Entity {
 
     public Worker() {
     }
+    public Worker(Long id) {
+        super(id);
+    }
     public Worker(Long id, Role role) {
         super(id);
         this.role = role;

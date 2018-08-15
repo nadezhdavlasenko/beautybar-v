@@ -1,6 +1,7 @@
 package finalproj.beautybar.dao;
 
 import finalproj.beautybar.dao.impl.*;
+import finalproj.beautybar.entity.Client;
 
 public class DAOFactory {
 
@@ -23,5 +24,14 @@ public class DAOFactory {
     public static IServiceDAO getServiceDAO() {
         return ServiceDAOImpl.getServiceDAO();
     }
+
+    public static IWorkerServiceDAO getWorkerServiceDAO() {
+        return WorkerServiceDAOImpl.getWorkerServiceDAO();
+    }
+
+    public static IClientDAO getClientDAO() {
+        return ClientDAOImpl.getClientDAO();
+    }
+
 
 }
