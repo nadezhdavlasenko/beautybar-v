@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/beautybar"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="32"
+              maxIdle="8"
+              maxWaitMillis="10000"
+              username="root"
+              password="sXG&gt;lcli*8w&lt;"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/beautybar?useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false"/>
+</Context>
+        <!--password="sXG>lcli*8w<"-->

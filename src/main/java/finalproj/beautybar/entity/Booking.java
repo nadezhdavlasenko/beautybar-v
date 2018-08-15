@@ -10,6 +10,8 @@ public class Booking extends Entity{
     private Worker worker;
     private Integer duration;
 
+    public Booking(){}
+
     public Booking(Client client, Timestamp timestamp, Worker worker, Integer duration) {
         this.client = client;
         this.timestamp = timestamp;

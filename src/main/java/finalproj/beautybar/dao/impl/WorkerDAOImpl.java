@@ -1,6 +1,5 @@
 package finalproj.beautybar.dao.impl;
 
-import finalproj.beautybar.dao.AbstractDAO;
 import finalproj.beautybar.dao.IWorkerDAO;
 import finalproj.beautybar.entity.Role;
 import finalproj.beautybar.entity.Worker;
@@ -65,9 +64,7 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
             return false;
         }
         finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
     }
 
@@ -92,9 +89,7 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
             ex.printStackTrace();
             return false;
         }finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
     }
 
@@ -107,21 +102,15 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
             final String SQL = SQL_UPDATE + " SET `idrole`= ?, `name`= ?, `email`= ?, `phone`, `password_hash`= ?, `salt`= ? WHERE `idworker`= ?";
             System.out.println("Executing " + SQL);
             statement = connection.prepareStatement(SQL);
-            statement.setObject(1, entity.getRole().getId());
-            statement.setObject(2, entity.getName());
-            statement.setObject(3, entity.getEmail());
-            statement.setObject(4, entity.getPhone());
-            statement.setObject(5, entity.getPasswordHash());
-            statement.setObject(6, entity.getSalt());
-            statement.setObject(7, entity.getId());
+            Object[] sqlParams = new Object[]{entity.getRole().getId(),entity.getName(),entity.getEmail(),
+                    entity.getPhone(), entity.getPasswordHash(), entity.getSalt(), entity.getId()};
+            setParams(statement,sqlParams);
             statement.executeUpdate();
             return entity;
         } catch (Exception ex){
             ex.printStackTrace();
         }finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
         return null;
     }

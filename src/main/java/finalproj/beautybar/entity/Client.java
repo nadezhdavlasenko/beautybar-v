@@ -10,6 +10,8 @@ public class Client extends Entity {
     private String passwordHash;
     private String salt;
 
+    public Client(){}
+
     public Client(String name, String email, String phone, String passwordHash, String salt) {
         this.name = name;
         this.email = email;

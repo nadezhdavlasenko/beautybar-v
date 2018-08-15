@@ -9,6 +9,8 @@ public class WorkerService extends Entity {
     private Service service;
     private BigDecimal price;
 
+    public WorkerService(){}
+
     public WorkerService(Worker worker, Service service, BigDecimal price) {
         this.worker = worker;
         this.service = service;

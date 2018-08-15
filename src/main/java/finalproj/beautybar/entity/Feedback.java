@@ -11,6 +11,8 @@ public class Feedback extends Entity {
     private Integer mark;
     private Date date;
 
+    public Feedback(){}
+
     public Feedback(Client client, Worker worker, String text, Integer mark, Date date) {
         this.client = client;
         this.worker = worker;

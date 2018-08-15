@@ -8,6 +8,8 @@ public class Service extends Entity {
     private Integer duratioon;
     private ServiceType serviceType;
 
+    public Service(){}
+
     public Service(String name, Integer duratioon, ServiceType serviceType) {
         this.name = name;
         this.duratioon = duratioon;

@@ -1,6 +1,5 @@
 package finalproj.beautybar.dao.impl;
 
-import finalproj.beautybar.dao.AbstractDAO;
 import finalproj.beautybar.dao.IRoleDAO;
 import finalproj.beautybar.entity.Role;
 import finalproj.beautybar.pool.ConnectionPool;
@@ -52,9 +51,7 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
             return false;
         }
         finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
 
     }
@@ -80,9 +77,7 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
             ex.printStackTrace();
             return false;
         }finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
     }
 
@@ -102,9 +97,7 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
         } catch (Exception ex){
             ex.printStackTrace();
         }finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
         return null;
     }

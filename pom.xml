@@ -30,11 +30,11 @@
                         </manifest>
                     </archive>
                     <containerConfigXML>
-                        web/META-INF/context.xml
+                        src/main/web/META-INF/context.xml
                     </containerConfigXML>
                     <webResources>
                         <resource>
-                            <directory>web</directory>
+                            <directory>src/main/web</directory>
                             <!-- override the destination directory for this resource -->
                             <!--<targetPath>/</targetPath>-->
                             <!-- enable filtering -->
@@ -44,7 +44,7 @@
                             </includes>
                         </resource>
                     </webResources>
-                    <webXml>web/WEB-INF/web.xml</webXml>
+                    <webXml>src/main/web/WEB-INF/web.xml</webXml>
                     <!--<warName>mywar</warName>-->
                 </configuration>
             </plugin>
