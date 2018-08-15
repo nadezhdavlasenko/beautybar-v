@@ -109,9 +109,10 @@ public abstract class AbstractDAO <K, T extends Entity> {
             statement.setObject(i + 1, sqlParams[i]);
         }
     }
+    protected abstract void populateDto(T entity, ResultSet resultSet) throws SQLException;
 
     protected abstract List<T> fetchMultiResults(ResultSet resultSet) throws SQLException;
-    protected abstract void populateDto(T entity, ResultSet resultSet) throws SQLException;
+
     protected abstract T fetchSingleResult(ResultSet resultSet) throws SQLException;
 
 

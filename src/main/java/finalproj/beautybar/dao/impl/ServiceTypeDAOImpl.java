@@ -11,16 +11,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceTypeDAOImple extends AbstractDAO<Long,ServiceType> implements IServiceTypeDAO{
+public class ServiceTypeDAOImpl extends AbstractDAO<Long,ServiceType> implements IServiceTypeDAO{
 
     protected static final int COLUMN_SERVICE_TYPE_ID = 1;
     protected static final int COLUMN_NAME = 2;
 
-    private static ServiceTypeDAOImple serviceTypeDAO = new ServiceTypeDAOImple();
+    private static ServiceTypeDAOImpl serviceTypeDAO = new ServiceTypeDAOImpl();
 
-    private ServiceTypeDAOImple(){}
+    private ServiceTypeDAOImpl(){}
 
-    public static ServiceTypeDAOImple getServiceTypeDAO() {
+    public static ServiceTypeDAOImpl getServiceTypeDAO() {
         return serviceTypeDAO;
     }
 

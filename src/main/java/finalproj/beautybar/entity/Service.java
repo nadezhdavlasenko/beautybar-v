@@ -5,21 +5,21 @@ import java.util.Objects;
 public class Service extends Entity {
 
     private String name;
-    private Integer duratioon;
+    private Integer duration;
     private ServiceType serviceType;
 
     public Service(){}
 
-    public Service(String name, Integer duratioon, ServiceType serviceType) {
+    public Service(String name, Integer duration, ServiceType serviceType) {
         this.name = name;
-        this.duratioon = duratioon;
+        this.duration = duration;
         this.serviceType = serviceType;
     }
 
-    public Service(Long id, String name, Integer duratioon, ServiceType serviceType) {
+    public Service(Long id, String name, Integer duration, ServiceType serviceType) {
         super(id);
         this.name = name;
-        this.duratioon = duratioon;
+        this.duration = duration;
         this.serviceType = serviceType;
     }
 
@@ -32,12 +32,12 @@ public class Service extends Entity {
         this.name = name;
     }
 
-    public Integer getDuratioon() {
-        return duratioon;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setDuratioon(Integer duratioon) {
-        this.duratioon = duratioon;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public ServiceType getServiceType() {
@@ -52,7 +52,7 @@ public class Service extends Entity {
     public String toString() {
         return "Service{" +
                 "name='" + name + '\'' +
-                ", duratioon=" + duratioon +
+                ", duration=" + duration +
                 ", serviceType=" + serviceType +
                 '}';
     }
@@ -63,11 +63,11 @@ public class Service extends Entity {
         if (o == null || getClass() != o.getClass()) return false;
         Service service = (Service) o;
         return Objects.equals(name, service.name) &&
-                Objects.equals(duratioon, service.duratioon);
+                Objects.equals(duration, service.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, duratioon);
+        return Objects.hash(name, duration);
     }
 }
