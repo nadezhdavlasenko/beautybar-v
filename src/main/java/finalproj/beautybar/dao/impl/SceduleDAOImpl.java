@@ -73,7 +73,7 @@ public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements IScedu
             // prepare statement
             statement = connection.prepareStatement(SQL);
             statement.setObject(1, id);
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
@@ -105,7 +105,7 @@ public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements IScedu
                     entity.getStartSun(), entity.getEndSun()};
             statement = connection.prepareStatement(SQL);
             setParams(statement,sqlParams);
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
@@ -126,6 +126,7 @@ public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements IScedu
                     "`end_thu`= ?, `start_fri`= ?, `end_fri`= ?, `start_sat`= ?, `end_sat`= ?," +
                     " `start_sun`= ?, `end_sun`= ? WHERE `idscedule`= ?";
             System.out.println("Executing " + SQL);
+            statement = connection.prepareStatement(SQL);
             Object[] sqlParams = new Object[]{entity.getWorker(),
                     entity.getStartMon(), entity.getEndMon(),
                     entity.getStartTue(), entity.getEndTue(),

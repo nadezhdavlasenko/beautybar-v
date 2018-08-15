@@ -31,7 +31,8 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
 
     @Override
     public Role findEntityById(Long id) throws Exception {
-        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDROLE = ?", new Object[]{id}); }
+        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDROLE = ?", new Object[]{id});
+    }
 
     @Override
     public Boolean delete(Long id) throws Exception {
@@ -44,7 +45,7 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
             // prepare statement
             statement = connection.prepareStatement(SQL);
             statement.setObject(1, id);
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
@@ -71,7 +72,7 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
             System.out.println("Executing " + SQL + ". ? = " + entity.getTypeName());
             statement = connection.prepareStatement(SQL);
             statement.setObject(1, entity.getTypeName());
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();

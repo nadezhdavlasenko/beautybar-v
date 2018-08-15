@@ -1,4 +1,4 @@
 package finalproj.beautybar.dao;
 
-public interface ServiceTypeDAO {
+public interface IService {
 }

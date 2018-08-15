@@ -14,9 +14,7 @@ import java.util.List;
 
 public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerDAO {
 
-    //protected final String SQL_SELECT = "SELECT * FROM " + getTableName();
     protected final String SQL_INNER_JOIN = " INNER JOIN role ON worker.idrole=role.idrole";
-
 
     protected static final int COLUMN_WORKERID = 1;
     protected static final int COLUMN_ROLEID = 2;
@@ -57,7 +55,7 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
             // prepare statement
             statement = connection.prepareStatement(SQL);
             statement.setObject(1, id);
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
@@ -83,7 +81,7 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
             statement.setObject(4, entity.getPhone());
             statement.setObject(5, entity.getPasswordHash());
             statement.setObject(6, entity.getSalt());
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
