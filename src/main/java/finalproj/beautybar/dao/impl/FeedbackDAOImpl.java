@@ -5,7 +5,9 @@ import finalproj.beautybar.entity.Client;
 import finalproj.beautybar.entity.Feedback;
 import finalproj.beautybar.entity.Role;
 import finalproj.beautybar.entity.Worker;
+import finalproj.beautybar.logging.LoggerLoader;
 import finalproj.beautybar.pool.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -142,6 +144,7 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
         client.setPasswordHash(resultSet.getString(COLUMN_CLIENT_PASSWORD_HASH));
         client.setSalt(resultSet.getString(COLUMN_CLIENT_SALT));
 
+
         Worker worker = new Worker();
         worker.setId(resultSet.getLong(COLUMN_WORKER_WORKERID));
         worker.setRole(new Role(resultSet.getLong(COLUMN_WORKER_ROLEID)));
@@ -151,13 +154,15 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
         worker.setPasswordHash(resultSet.getString(COLUMN_WORKER_PASSWORD_HASH));
         worker.setSalt(resultSet.getString(COLUMN_WORKER_SALT));
 
-        Feedback feedback = new Feedback();
-        feedback.setId(resultSet.getLong(COLUMN_FEEDBACKID));
-        feedback.setClient(client);
-        feedback.setWorker(worker);
-        feedback.setText(resultSet.getString(COLUMN_TEXT));
-        feedback.setMark(resultSet.getInt(COLUMN_MARK));
-        feedback.setDate(resultSet.getDate(COLUMN_DATE));
+
+        entity.setId(resultSet.getLong(COLUMN_FEEDBACKID));
+        entity.setClient(client);
+        entity.setWorker(worker);
+        entity.setText(resultSet.getString(COLUMN_TEXT));
+        entity.setMark(resultSet.getInt(COLUMN_MARK));
+        entity.setDate(resultSet.getDate(COLUMN_DATE));
+
+
     }
 
     @Override

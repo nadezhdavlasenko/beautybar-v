@@ -140,12 +140,12 @@ public class BookingDAOImpl extends AbstractDAO<Long, Booking> implements IBooki
         workerService.setService(new Service(resultSet.getLong(COLUMN_WORKER_SERVICE_SERVICEID)));
         workerService.setPrice(resultSet.getBigDecimal(COLUMN_WORKER_SERVICE_PRICE));
 
-        Booking booking = new Booking();
-        booking.setId(resultSet.getLong(COLUMN_BOOKINGID));
-        booking.setTimestamp(resultSet.getTimestamp(COLUMN_TIMESTAMP));
-        booking.setDuration(resultSet.getInt(COLUMN_DURATION));
-        booking.setClient(client);
-        booking.setWorkerService(workerService);
+
+        entity.setId(resultSet.getLong(COLUMN_BOOKINGID));
+        entity.setTimestamp(resultSet.getTimestamp(COLUMN_TIMESTAMP));
+        entity.setDuration(resultSet.getInt(COLUMN_DURATION));
+        entity.setClient(client);
+        entity.setWorkerService(workerService);
     }
 
     @Override
