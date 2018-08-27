@@ -43,6 +43,8 @@
                                 <include>index.jsp</include>
                                 <include>jsp/main.jspx</include>
                                 <include>jsp/login.jsp</include>
+                                <include>jsp/signup.jsp</include>
+                                <include>jsp/error.jspx</include>
                             </includes>
                         </resource>
                     </webResources>

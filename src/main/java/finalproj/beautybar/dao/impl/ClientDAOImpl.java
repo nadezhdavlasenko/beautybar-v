@@ -34,8 +34,13 @@ public class ClientDAOImpl extends AbstractDAO<Integer,Client> implements IClien
     }
 
     @Override
-    public Client findEntityById(Long id) throws Exception {
+    public Client findById(Long id) throws Exception {
         return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDCLIENT = ?", new Object[]{id});
+    }
+
+    @Override
+    public Client findByEmail(String email) throws Exception {
+        return findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE EMAIL = ?", new Object[]{email});
     }
 
     @Override

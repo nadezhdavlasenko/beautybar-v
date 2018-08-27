@@ -29,7 +29,10 @@
     <br/>
     <input type ="submit" value="Enter">
 
+
   </form>
+  <a href="jsp/login.jsp">log in</a>
+  <a href="jsp/signup.jsp">sign up</a>
   <hr/>
   </body>
 </html>
