@@ -26,11 +26,11 @@ public class BookingDAOImpl extends AbstractDAO<Long, Booking> implements IBooki
     protected static final int COLUMN_CLIENT_EMAIL = 8;
     protected static final int COLUMN_CLIENT_PHONE = 9;
     protected static final int COLUMN_CLIENT_PASSWORD_HASH = 10;
-    protected static final int COLUMN_CLIENT_SALT = 11;
-    protected static final int COLUMN_WORKER_SERVICE_WORKER_SERVICEID = 12;
-    protected static final int COLUMN_WORKER_SERVICE_WORKERID = 13;
-    protected static final int COLUMN_WORKER_SERVICE_SERVICEID = 14;
-    protected static final int COLUMN_WORKER_SERVICE_PRICE = 15;
+    //protected static final int COLUMN_CLIENT_SALT = 11;
+    protected static final int COLUMN_WORKER_SERVICE_WORKER_SERVICEID = 11;
+    protected static final int COLUMN_WORKER_SERVICE_WORKERID = 12;
+    protected static final int COLUMN_WORKER_SERVICE_SERVICEID = 13;
+    protected static final int COLUMN_WORKER_SERVICE_PRICE = 14;
 
     private static BookingDAOImpl bookingDAO = new BookingDAOImpl();
 
@@ -132,7 +132,7 @@ public class BookingDAOImpl extends AbstractDAO<Long, Booking> implements IBooki
         client.setEmail(resultSet.getString(COLUMN_CLIENT_EMAIL));
         client.setPhone(resultSet.getString(COLUMN_CLIENT_PHONE));
         client.setPasswordHash(resultSet.getString(COLUMN_CLIENT_PASSWORD_HASH));
-        client.setSalt(resultSet.getString(COLUMN_CLIENT_SALT));
+        //client.setSalt(resultSet.getString(COLUMN_CLIENT_SALT));
 
         WorkerService workerService = new WorkerService();
         workerService.setId(resultSet.getLong(COLUMN_WORKER_SERVICE_WORKER_SERVICEID));

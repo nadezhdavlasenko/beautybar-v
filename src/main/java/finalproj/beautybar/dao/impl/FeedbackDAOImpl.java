@@ -32,14 +32,14 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
     protected static final int COLUMN_CLIENT_EMAIL = 9;
     protected static final int COLUMN_CLIENT_PHONE = 10;
     protected static final int COLUMN_CLIENT_PASSWORD_HASH = 11;
-    protected static final int COLUMN_CLIENT_SALT = 12;
-    protected static final int COLUMN_WORKER_WORKERID = 13;
-    protected static final int COLUMN_WORKER_ROLEID = 14;
-    protected static final int COLUMN_WORKER_NAME = 15;
-    protected static final int COLUMN_WORKER_EMAIL = 16;
-    protected static final int COLUMN_WORKER_PHONE = 17;
-    protected static final int COLUMN_WORKER_PASSWORD_HASH = 18;
-    protected static final int COLUMN_WORKER_SALT = 19;
+   // protected static final int COLUMN_CLIENT_SALT = 12;
+    protected static final int COLUMN_WORKER_WORKERID = 12;
+    protected static final int COLUMN_WORKER_ROLEID = 13;
+    protected static final int COLUMN_WORKER_NAME = 14;
+    protected static final int COLUMN_WORKER_EMAIL = 15;
+    protected static final int COLUMN_WORKER_PHONE = 16;
+    protected static final int COLUMN_WORKER_PASSWORD_HASH = 17;
+    protected static final int COLUMN_WORKER_SALT = 18;
 
     private static FeedbackDAOImpl feedbackDAO = new FeedbackDAOImpl();
 
@@ -142,7 +142,7 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
         client.setEmail(resultSet.getString(COLUMN_CLIENT_EMAIL));
         client.setPhone(resultSet.getString(COLUMN_CLIENT_PHONE));
         client.setPasswordHash(resultSet.getString(COLUMN_CLIENT_PASSWORD_HASH));
-        client.setSalt(resultSet.getString(COLUMN_CLIENT_SALT));
+        //client.setSalt(resultSet.getString(COLUMN_CLIENT_SALT));
 
 
         Worker worker = new Worker();

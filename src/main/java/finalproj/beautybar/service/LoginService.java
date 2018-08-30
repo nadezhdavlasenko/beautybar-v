@@ -7,6 +7,14 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginService {
 
+    private static LoginService loginService = new LoginService();
+
+    private LoginService(){}
+
+    public static LoginService getLoginService() {
+        return loginService;
+    }
+
     public boolean authentificate(String login, String password){
         IClientDAO clientDAO = DAOFactory.getClientDAO();
         Client client = null;
@@ -14,9 +22,10 @@ public class LoginService {
             client = clientDAO.findByEmail(login);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return BCrypt.checkpw(password, client.getPasswordHash());
+        if (client != null) {
+            return BCrypt.checkpw(password, client.getPasswordHash());
+        } else return false;
     }
 
 }

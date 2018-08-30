@@ -18,7 +18,7 @@ public class ClientDAOImpl extends AbstractDAO<Integer,Client> implements IClien
     protected static final int COLUMN_EMAIL = 3;
     protected static final int COLUMN_PHONE = 4;
     protected static final int COLUMN_PASSWORD_HASH = 5;
-    protected static final int COLUMN_SALT = 6;
+   // protected static final int COLUMN_SALT = 6;
 
     private static ClientDAOImpl clientDAO = new ClientDAOImpl();
 
@@ -71,15 +71,14 @@ public class ClientDAOImpl extends AbstractDAO<Integer,Client> implements IClien
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getConnection();
-            final String SQL = SQL_INSERT + " (`name`, `email`, `phone`, `password_hash`, `salt`) VALUES (?, ?, ?, ?, ?, ?)";
+            final String SQL = SQL_INSERT + " (`name`, `email`, `phone`, `password_hash`) VALUES (?, ?, ?, ?)";
             System.out.println("Executing " + SQL);
             statement = connection.prepareStatement(SQL);
             Object[] sqlParams = new Object[]{
                     entity.getName(),entity.getEmail(),
-                    entity.getPhone(), entity.getPasswordHash(),
-                    entity.getSalt()};
-            statement.executeUpdate();
+                    entity.getPhone(), entity.getPasswordHash()};
             setParams(statement,sqlParams);
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
@@ -95,13 +94,13 @@ public class ClientDAOImpl extends AbstractDAO<Integer,Client> implements IClien
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getConnection();
-            final String SQL = SQL_UPDATE + " SET `name`= ?, `email`= ?, `phone`, `password_hash`= ?, `salt`= ? WHERE `idCLIENT`= ?";
+            final String SQL = SQL_UPDATE + " SET `name`= ?, `email`= ?, `phone`, `password_hash`= ? WHERE `idCLIENT`= ?";
             System.out.println("Executing " + SQL);
             statement = connection.prepareStatement(SQL);
             Object[] sqlParams = new Object[]{
                     entity.getName(),entity.getEmail(),
                     entity.getPhone(), entity.getPasswordHash(),
-                    entity.getSalt(), entity.getId()};
+                    entity.getId()};
             setParams(statement,sqlParams);
             statement.executeUpdate();
             return entity;
@@ -136,7 +135,7 @@ public class ClientDAOImpl extends AbstractDAO<Integer,Client> implements IClien
         entity.setEmail(resultSet.getString(COLUMN_EMAIL));
         entity.setPhone(resultSet.getString(COLUMN_PHONE));
         entity.setPasswordHash(resultSet.getString(COLUMN_PASSWORD_HASH));
-        entity.setSalt(resultSet.getString(COLUMN_SALT));
+       // entity.setSalt(resultSet.getString(COLUMN_SALT));
     }
 
     @Override

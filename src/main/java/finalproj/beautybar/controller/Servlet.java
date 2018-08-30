@@ -1,11 +1,6 @@
 package finalproj.beautybar.controller;
 
 import finalproj.beautybar.command.ICommand;
-import finalproj.beautybar.dao.*;
-import finalproj.beautybar.entity.Role;
-import finalproj.beautybar.entity.Scedule;
-import finalproj.beautybar.entity.ServiceType;
-import finalproj.beautybar.entity.Worker;
 import finalproj.beautybar.manager.Message;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class Servlet extends HttpServlet {
