@@ -42,8 +42,10 @@
                             <includes>
                                 <include>index.jsp</include>
                                 <include>META-INF/main.jspx</include>
+                                <include>META-INF/settings.jsp</include>
                                 <include>jsp/login.jsp</include>
                                 <include>jsp/signup.jsp</include>
+                                <include>jsp/booking.jsp</include>
                                 <include>jsp/error.jspx</include>
                             </includes>
                         </resource>

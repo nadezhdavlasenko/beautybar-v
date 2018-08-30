@@ -19,6 +19,8 @@
             <c:out value="${user}, Hello!"/>
             <hr/>
             <a href ="Servlettest">Return to login</a>
+            <a href ="Servlettest?command=settings">settings</a>
+
         </body>
     </html>
 

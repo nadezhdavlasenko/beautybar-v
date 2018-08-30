@@ -1,9 +1,6 @@
 package finalproj.beautybar.controller;
 
-import finalproj.beautybar.command.CommandLogin;
-import finalproj.beautybar.command.CommandMissing;
-import finalproj.beautybar.command.CommandSignUp;
-import finalproj.beautybar.command.ICommand;
+import finalproj.beautybar.command.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -15,6 +12,7 @@ public class ControllerHelper {
     private ControllerHelper() {
         commands.put("login", new CommandLogin());
         commands.put("signup", new CommandSignUp());
+        commands.put("settings", new CommandSettings());
     }
 
     public ICommand getCommand(HttpServletRequest request) {
