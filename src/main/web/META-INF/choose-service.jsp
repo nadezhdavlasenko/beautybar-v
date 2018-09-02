@@ -226,11 +226,11 @@
                 </yclients-default-subheader><div class="mask y-header-backdrop"></div></div></div><div layout-padding="layout-padding" layout-margin="layout-margin" class="content"><yclients-record-service class="ng-isolate-scope"><y-repeat-booking type="$ctrl.bookingEnum.service" class="ng-isolate-scope"><!-- ngIf: $ctrl.isNeedRepeat === true -->
 </y-repeat-booking><div class="center-500">
             <div class="service-wrapper"><yclients-record-service-search-form events="$ctrl.allEvents" services="$ctrl.allServices" categories="$ctrl.allCategories" is-has-payment-legend="$ctrl.is_charge_active" on-search="$ctrl.updateEventsAndServices(services, categories)" class="ng-isolate-scope"><form layout="column" name="orderForm" novalidate="novalidate" method="post" class="ng-pristine ng-valid AVAST_PAM_nonloginform"><md-input-container class="y-service-search-form"><label class="ng-binding" for="input_0">Найти акции и услуги</label><input tabindex="1" name="query" data-block="service.search.input" class="name-input ng-pristine ng-untouched ng-valid md-input ng-empty" ng-model-options="{ debounce: 30}" ng-model="$ctrl.searchQuery" ng-change="$ctrl.search()" id="input_0"> <i class="mdi mdi-magnify y-service-search-form__ico"></i></md-input-container></form><div ng-class="{ 'y-service-search-form_bottom': $ctrl.isHasPaymentLegend === true &amp;&amp; $ctrl.notFound }"><!-- ngIf: $ctrl.notFound --></div></yclients-record-service-search-form><!-- ngIf: $ctrl.is_charge_active --><!-- ngIf: $ctrl.isLoaded === false --><!-- ngIf: $ctrl.servicesIsFlatten --><!-- ngIf: !$ctrl.servicesIsFlatten --><yclients-record-service-services-list ng-if="!$ctrl.servicesIsFlatten" services="$ctrl.services" categories="$ctrl.categories" events="$ctrl.events" idx="$ctrl.idx" class="ng-scope ng-isolate-scope"><!-- ngRepeat: category in $ctrl.categories track by category.id --><div class="service-group-wrapper ng-scope" ng-repeat="category in $ctrl.categories track by category.id"><!-- ngIf: ::!$first --><h3 class="header service-group-header ng-binding service-group-header_first" data-block="service.group-header" ng-click="$ctrl.toggleCategory(category)" ng-class="{'service-group-header_first': $first &amp;&amp; !$ctrl.events.length}"><table>
-    <%--<c:forEach items="${servicetypes}" var="item">--%>
-        <%--<tr>--%>
-            <%--<td><c:out value="${item}" /></td>--%>
-        <%--</tr>--%>
-    <%--</c:forEach>--%>
+    <c:forEach items="${servicetypes}" var="item">
+        <tr>
+            <td><c:out value="${item}" /></td>
+        </tr>
+    </c:forEach>
         <c:out value="${user}, Hello!"/>
 </table> <!-- ngIf: $ctrl.selectedServicesCount(category.id) --><i ng-class="category.isFaded || category.fadeInProgress ? 'down' : 'up'" class="fa fa-angle-down down"></i></h3>
     <div class="services__service-list services__service-list_hided" ng-class="{
