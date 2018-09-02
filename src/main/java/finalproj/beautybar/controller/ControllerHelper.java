@@ -13,6 +13,7 @@ public class ControllerHelper {
         commands.put("login", new CommandLogin());
         commands.put("signup", new CommandSignUp());
         commands.put("settings", new CommandSettings());
+        commands.put("chooseservicetype", new CommandChooseServiceType());
     }
 
     public ICommand getCommand(HttpServletRequest request) {

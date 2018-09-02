@@ -1,6 +1,7 @@
 package finalproj.beautybar.controller;
 
 import finalproj.beautybar.command.ICommand;
+import finalproj.beautybar.manager.Config;
 import finalproj.beautybar.manager.Message;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class Servlet extends HttpServlet {
@@ -27,7 +29,9 @@ public class Servlet extends HttpServlet {
 
         String page = null;
         try {
-            //HttpSession session = request.getSession(true);
+
+            HttpSession session = request.getSession(true);
+            //session.setAttribute("current page", Config.getInstance().getProperty(Config.INDEX));
             ICommand command = controllerHelper.getCommand(request);
             page = command.execute(request, response);
         } catch (ServletException e) {

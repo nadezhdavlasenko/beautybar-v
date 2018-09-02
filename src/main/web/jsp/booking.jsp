@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: nadezhdavlasenko
@@ -8,7 +9,100 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <style type="text/css">[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}  ng\:form{display:block;}  .ng-animate-shim{visibility:hidden;}  .ng-anchor{position:absolute;}</style>
+
+    <base href="/">
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <!-- inject:polifill --><!-- endinject -->
+    <script src="browser-error/browser-detect/browser-detect.umd.js"></script>
+    <script>
+        var thisBrowser = browserDetect();
+        if (thisBrowser.name === 'ie') {
+            window.location.replace("/browser-error.html");
+        }
+    </script>
+
+    <title>Онлайн-запись</title>
+
+    <style>
+        @-webkit-keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+
+        .main-animated-circle-loader {
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+
+            border-radius: 100%;
+            -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+            animation: sk-scaleout 1.0s infinite ease-in-out;
+
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            margin-left: -50px;
+            z-index: 20000;
+        }
+
+
+    </style>
+
+
+    <script type="text/javascript" src="https://mc.yandex.ru/metrika/tag.js"></script><script src="https://maps.googleapis.com/maps/api/js?callback=yGoogleMapsInitCallback&amp;key=AIzaSyDXdiemDvD0Id0YIR6EJhr-ZOgcYnRmnwA" async="" defer=""></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/34/4/intl/ru_ALL/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/34/4/intl/ru_ALL/util.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/34/4/intl/ru_ALL/stats.js"></script><script type="text/javascript" name="AVAST_PAM_submitInjector">(function () {
+        var f = document.querySelectorAll("form")[0]; // eslint-disable-line no-undef
+        if (!f._avast_submit) {
+            f._avast_submit = f.submit;
+        }
+        try {
+            Object.defineProperty(f, "submit", {
+                get: function () {
+                    return function (prev_submit) {
+                        prev_submit.call(this);
+
+                        if (this._avast_inside_submit) {
+                            return;
+                        }
+                        this._avast_inside_submit = true;
+
+                        var evt = document.createEvent("CustomEvent");
+                        evt.initEvent("scriptsubmit", true, true); // bubbling & cancelable
+                        this.dispatchEvent(evt);
+
+                        delete this._avast_inside_submit;
+                    }.bind(this, this._avast_submit);
+                },
+                set: function (submitFunc) {
+                    this._avast_submit = submitFunc;
+                }
+            });
+        }
+        catch (ex) {
+            // ignored
+        }
+    })();</script>
 </head>
 
 <%--<div class="yWidgetBlock right yWidgetShow" id="frame" style="display: block; z-index: 10000003;">--%>
@@ -24,21 +118,17 @@
 <div class="y-main-foreground"></div>
 
 
-<link rel="stylesheet" href="/css/vendor1534511931812.css">
-<link rel="stylesheet" href="/css/application1534511931812.css">
+<link rel="stylesheet" href="../css/vendor1534511931812.css">
+<link rel="stylesheet" href="../css/application1534511931812.css">
 
-<script src="babel-polyfill.1534511936603.js"></script>
-<script src="vendor.1534511936603.js"></script>
-<script src="app.1534511936603.js"></script>
+<script src="../js/babel-polyfill.1534511936603.js"></script>
+<script src="../js/vendor.1534511936603.js"></script>
+<script src="../js/app.1534511936603.js"></script>
 
-<link rel="stylesheet" href="style.1534511936603.css">
+<link rel="stylesheet" href="../css/style.1534511936603.css">
 
-<script src="/templates1534511931812.js"></script>
+<script src="../js/templates1534511931812.js"></script>
 
-
-<noscript>
-    <div><img src="https://mc.yandex.ru/watch/35239280" style="position:absolute; left:-9999px;" alt=""/></div>
-</noscript>
 <div class="y-tooltips y-tooltips_hidden ng-isolate-scope" ng-click="ctrl.close()">
     <div class="y-tooltips__content"><!-- ngIf: ctrl.template -->
         <div class="y-tooltips__content__close mdi mdi-close"></div>
@@ -127,24 +217,7 @@
                                             <!-- ngRepeat: company in $ctrl.companies -->
                                             <li ng-repeat="company in $ctrl.companies" class="ng-scope"
                                                 style="display: inline-block; transform: translate3d(-300%, 0px, 0px);">
-            <span class="menu-carousel-block__item">
-                <h3 class="y-accent-text-color side-menu__company-title ng-binding">GC barbershop на Паньківській</h3>
-                <h4 class="y-accent-text-color side-menu__company-address ng-binding">вул. Паньківська, 12</h4>
-            </span>
-                                            </li><!-- end ngRepeat: company in $ctrl.companies -->
-                                            <li ng-repeat="company in $ctrl.companies" class="ng-scope"
-                                                style="display: inline-block; transform: translate3d(-200%, 0px, 0px);">
-            <span class="menu-carousel-block__item">
-                <h3 class="y-accent-text-color side-menu__company-title ng-binding">GC barbershop на Арсенальній</h3>
-                <h4 class="y-accent-text-color side-menu__company-address ng-binding">вул. Івана Мазепи,12</h4>
-            </span>
-                                            </li><!-- end ngRepeat: company in $ctrl.companies -->
-                                            <li ng-repeat="company in $ctrl.companies" class="ng-scope"
-                                                style="display: inline-block; transform: translate3d(-100%, 0px, 0px);">
-            <span class="menu-carousel-block__item">
-                <h3 class="y-accent-text-color side-menu__company-title ng-binding">GC barbershop на Оболоні</h3>
-                <h4 class="y-accent-text-color side-menu__company-address ng-binding">Оболонський проспект, д. 26</h4>
-            </span>
+
                                             </li><!-- end ngRepeat: company in $ctrl.companies -->
                                             <li ng-repeat="company in $ctrl.companies" class="ng-scope"
                                                 style="display: inline-block; transform: translate3d(0%, 0px, 0px);">
@@ -158,7 +231,9 @@
                                              style="background-image: url(https://w11628.yclients.com/uploads/widget_back/0/0a/0ae3cefd5373dac_20171220173643.jpeg)"></div>
                                     </div>
                                 </y-menu-carousel><!-- end ngIf: $root.widgetId !== -1 -->
-
+                                <hr/>
+                                <c:out value="${user}, Hello!"/>
+                                <hr/>
                                 <y-menu-list company="$ctrl.currentCompany" class="y-items-md-content ng-isolate-scope">
                                     <div class="y-menu-list-wrapper">
                                         <!-- ngIf: $root.widgetId !== -1 -->
@@ -271,6 +346,7 @@
                             </y-menu>
                         </div>
                     </yclients-nav>
+
                     <!-- end ngIf: $root.ySettings.style.show_header !== false && $root.appIsLoaded && !$root.appIsDisabled -->
                     <!-- ngIf: !$root.appIsDisabled && $root.appIsLoaded -->
                     <div ng-if="!$root.appIsDisabled &amp;&amp; $root.appIsLoaded" layout-fill="layout-fill"
@@ -283,7 +359,7 @@
                                         <div class="cover">
                                             <div ng-style="{'background-image': 'url(' + $root.headerImage + ')'}"
                                                  class="title-wrapper y-header-toolbar-wrapper"
-                                                 style="background-image: url(&quot;https://w11628.yclients.com/uploads/widget_header/9/99/9916482925ae12d_20171220163853.jpeg&quot;);">
+                                                 style="background-image: url('https://w11628.yclients.com/uploads/widget_header/9/99/9916482925ae12d_20171220163853.jpeg');">
                                                 <yclients-default-subheader class="y-subheader ng-isolate-scope">
                                                     <div class="center-500 header-breadcrumbs">
                                                         <div class="center-500 header-breadcrumbs"
@@ -292,7 +368,9 @@
                                                             <div class="js-pane-0 center-500 header-breadcrumbs ng-isolate-scope"
                                                                  y-data="ctrl.data"><h1
                                                                     class="text-color-50 y-headline y-breadcrumbs-color ng-binding">
-                                                                Онлайн-запись</h1>
+                                                                Онлайн-запись </h1><hr/>
+                                                                <c:out value="${user}, Hello!"/>
+                                                                <hr/>
                                                                 <h2 class="text-color-50 md-subhead">
                                                                     <!-- ngIf: data.subtitle.length --> <span
                                                                         class="description y-breadcrumbs-color ng-binding">GC barbershop на Хрещатику</span>
@@ -333,10 +411,12 @@
                                                                      id="online_booking_datetime"><h3
                                                                         class="ng-binding">Дата и время</h3>
                                                                     <!-- ngIf: record.time.length && record.date.length || (ctrl.dateHidden || ctrl.timeHidden) -->
-                                                                    <!-- ngIf: !(record.date.length && record.time.length) --><i
+                                                                    <!-- ngIf: !(record.date.length && record.time.length) -->
+                                                                    <i
                                                                             class="fa fa-angle-right y-item-arrow ng-scope"
-                                                                            ng-if="!(record.date.length &amp;&amp; record.time.length)"
-                                                                            data-block="list.datetime.choose-arrow"></i>
+                                                                            ng-if="!(record.date.length && record.time.length)"
+                                                                            data-block="list.datetime.choose-arrow">
+                                                                    </i>
                                                                     <!-- end ngIf: !(record.date.length && record.time.length) -->
                                                                 </div>
                                                                 <i class="y-icon warn-color remove-button mdi mdi-close-circle-outline ng-scope hidden"
@@ -409,8 +489,8 @@
                                             <div class="footer-contacts__content">
                                                 <div class="footer-contacts__address"><a
                                                         class="f-tr y-footer-adress-color ng-binding" target="_blank"
-                                                        ng-href="https://www.google.com/maps/search/?api=1&amp;query=%D0%B2%D1%83%D0%BB.%20%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA,%201/2"
-                                                        href="https://www.google.com/maps/search/?api=1&amp;query=%D0%B2%D1%83%D0%BB.%20%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA,%201/2">вул.
+                                                        ng-href="https://www.google.com/maps/search/?api=1&query=%D0%B2%D1%83%D0%BB.%20%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA,%201/2"
+                                                        href="https://www.google.com/maps/search/?api=1&;query=%D0%B2%D1%83%D0%BB.%20%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA,%201/2">вул.
                                                     Хрещатик, 1/2</a></div>
                                                 <div class="footer-contacts__phone">
                                                     <!-- ngRepeat: phone in $ctrl.getPhones() --><a

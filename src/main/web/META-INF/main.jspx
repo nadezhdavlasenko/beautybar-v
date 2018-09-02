@@ -16,8 +16,8 @@
         </head>
         <body><h3>Hello !</h3>
             <hr/>
-            <c:out value="${user}, Hello!"/>
-            <hr/>
+        <c:out value="${user}, Hello!"/>
+        <hr/>
             <a href ="Servlettest">Return to login</a>
             <a href ="Servlettest?command=settings">settings</a>
 

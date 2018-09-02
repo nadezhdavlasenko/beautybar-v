@@ -18,16 +18,16 @@ public class CommandLogin implements ICommand{
 
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse responce) throws Exception {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String page = null;
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
         String login = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);
         LoginService loginService = LoginService.getLoginService();
         if (loginService.authentificate(login,password)) {
-            //request.setAttribute("user", login);
             session.setAttribute("user", login);
-            page = Config.getInstance().getProperty(Config.MAIN);
+            page = request.getRequestURI() +       // "/servlet"
+                    "?" + session.getAttribute("currentquery").toString();
 
         } else {
             request.setAttribute("error", Message.getInstance().getProperty(Message.LOGIN_ERROR));

@@ -32,9 +32,12 @@
 
   </form>
   <a href="Servlettest">log in</a>
-  <a href="Servlettest?command=signup">sign up</a>
+  <br/>
+  <a href="Servlettest?command=tosignup">sign up</a>
   <br/>
   <a href ="Servlettest?command=settings">settings</a>
+  <br/>
+  <a href ="Servlettest?command=chooseservicetype">записаться</a>
 
   <hr/>
   </body>
