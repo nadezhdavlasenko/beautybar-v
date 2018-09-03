@@ -44,7 +44,7 @@ public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements IScedu
     protected static final int COLUMN_ROLE_IDROLE = 24;
     protected static final int COLUMN_ROLE_NAME = 25;
 
-    private static SceduleDAOImpl sceduleDAO = new SceduleDAOImpl();
+    private static final SceduleDAOImpl sceduleDAO = new SceduleDAOImpl();
 
     private SceduleDAOImpl(){}
 

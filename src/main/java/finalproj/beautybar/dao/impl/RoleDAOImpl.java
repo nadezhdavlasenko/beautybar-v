@@ -16,7 +16,7 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
     protected static final int COLUMN_ROLEID = 1;
     protected static final int COLUMN_TYPENAME = 2;
 
-    private static RoleDAOImpl roleDAO = new RoleDAOImpl();
+    private static final RoleDAOImpl roleDAO = new RoleDAOImpl();
 
     private RoleDAOImpl(){}
 

@@ -41,7 +41,7 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
     protected static final int COLUMN_WORKER_PASSWORD_HASH = 17;
     protected static final int COLUMN_WORKER_SALT = 18;
 
-    private static FeedbackDAOImpl feedbackDAO = new FeedbackDAOImpl();
+    private static final FeedbackDAOImpl feedbackDAO = new FeedbackDAOImpl();
 
     private FeedbackDAOImpl(){}
 

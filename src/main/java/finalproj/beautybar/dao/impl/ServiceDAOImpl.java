@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ServiceDAOImpl extends AbstractDAO<Long,Service> implements IServiceDAO{
 
-    protected final String SQL_INNER_JOIN = " INNER JOIN role ON service.idtype=service_type.idtype";
+    protected final String SQL_INNER_JOIN = " INNER JOIN service_type ON service.idtype=service_type.idservice_type";
 
     protected static final int COLUMN_SERVICEID = 1;
     protected static final int COLUMN_NAME = 2;
@@ -27,7 +27,7 @@ public class ServiceDAOImpl extends AbstractDAO<Long,Service> implements IServic
 
     private ServiceDAOImpl(){}
 
-    public static ServiceDAOImpl getServiceDAO(){
+    public static final ServiceDAOImpl getServiceDAO(){
         return serviceDAO;
     }
 
@@ -36,6 +36,11 @@ public class ServiceDAOImpl extends AbstractDAO<Long,Service> implements IServic
     public List<Service> findAll() throws Exception {
         return findByDynamicSelect(SQL_SELECT_FROM + SQL_INNER_JOIN, null);
     }
+
+//    @Override
+//    public List<Service> findAllByServiceType(String serviceTypeName) throws Exception {
+//        return findByDynamicSelect(SQL_SELECT_FROM + SQL_INNER_JOIN + " WHERE ", null);
+//    }
 
     @Override
     public Service findEntityById(Long id) throws Exception {

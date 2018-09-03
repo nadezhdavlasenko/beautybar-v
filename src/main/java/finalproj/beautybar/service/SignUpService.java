@@ -6,7 +6,7 @@ import finalproj.beautybar.entity.Client;
 
 public class SignUpService {
 
-    private static SignUpService signUpService = new SignUpService();
+    private static final SignUpService signUpService = new SignUpService();
 
     private SignUpService(){}
 

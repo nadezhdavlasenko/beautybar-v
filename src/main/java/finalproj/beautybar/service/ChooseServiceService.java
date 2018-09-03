@@ -9,13 +9,13 @@ import finalproj.beautybar.entity.ServiceType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChooseServiceServiceType {
+public class ChooseServiceService {
 
-    private static ChooseServiceServiceType chooseServiceService = new ChooseServiceServiceType();
+    private static ChooseServiceService chooseServiceService = new ChooseServiceService();
 
-    private ChooseServiceServiceType(){}
+    private ChooseServiceService(){}
 
-    public static ChooseServiceServiceType getChooseServiceServiceType(){
+    public static final ChooseServiceService getChooseServiceService(){
         return chooseServiceService;
     }
 
@@ -24,6 +24,17 @@ public class ChooseServiceServiceType {
         List<ServiceType> list = new ArrayList<>();
         try {
             list = serviceTypeDAO.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Service> getAllServices(){
+        IServiceDAO serviceDAO = DAOFactory.getServiceDAO();
+        List<Service> list = new ArrayList<>();
+        try {
+            list = serviceDAO.findAll();
         } catch (Exception e) {
             e.printStackTrace();
         }

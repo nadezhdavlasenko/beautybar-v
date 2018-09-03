@@ -14,6 +14,9 @@ public class ControllerHelper {
         commands.put("signup", new CommandSignUp());
         commands.put("settings", new CommandSettings());
         commands.put("chooseservicetype", new CommandChooseServiceType());
+        commands.put("chooseservice", new CommandChooseService());
+        commands.put("choosedate", new CommandChooseDate());
+
     }
 
     public ICommand getCommand(HttpServletRequest request) {

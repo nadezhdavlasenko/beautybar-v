@@ -20,6 +20,8 @@ public class Config {
     public static final String SIGNUP = "SIGNUP";
     public static final String SETTINGS = "SETTINGS";
     public static final String CHOOSESERVICE = "CHOOSESERVICE";
+    public static final String CHOOSESERVICETYPE = "CHOOSESERVICETYPE";
+    public static final String CHOOSEDATE = "CHOOSEDATE";
 
     public static Config getInstance() {
         if (instance == null) {

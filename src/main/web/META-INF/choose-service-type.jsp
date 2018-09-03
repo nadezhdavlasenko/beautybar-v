@@ -161,7 +161,7 @@
                                 <table>
                                     <c:forEach items="${services}" var="item">
                                         <tr>
-                                            <td><a href="Servlettest?command=choosedate&service=${item}">
+                                            <td><a href="Servlettest?command=chooseservice&servicetype=${item}">
                                                 <!-- ngIf: $ctrl.is_charge_active -->
                                                 <!-- ngIf: $ctrl.isLoaded === false -->
                                                 <!-- ngIf: $ctrl.servicesIsFlatten -->

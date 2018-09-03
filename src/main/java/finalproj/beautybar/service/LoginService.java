@@ -7,7 +7,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginService {
 
-    private static LoginService loginService = new LoginService();
+    private static final LoginService loginService = new LoginService();
 
     private LoginService(){}
 

@@ -32,7 +32,7 @@ public class BookingDAOImpl extends AbstractDAO<Long, Booking> implements IBooki
     protected static final int COLUMN_WORKER_SERVICE_SERVICEID = 13;
     protected static final int COLUMN_WORKER_SERVICE_PRICE = 14;
 
-    private static BookingDAOImpl bookingDAO = new BookingDAOImpl();
+    private static final BookingDAOImpl bookingDAO = new BookingDAOImpl();
 
     private BookingDAOImpl(){}
 

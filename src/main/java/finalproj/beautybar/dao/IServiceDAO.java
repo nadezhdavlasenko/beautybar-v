@@ -8,6 +8,7 @@ import java.util.List;
 public interface IServiceDAO {
 
     List<Service> findAll() throws Exception;
+    //List<Service> findAllByServiceType(String serviceTypeName) throws Exception;
     Service findEntityById(Long id) throws Exception;
     Boolean delete(Long id) throws Exception;
     Boolean create(Service entity) throws Exception;

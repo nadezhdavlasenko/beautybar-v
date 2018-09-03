@@ -20,7 +20,7 @@ public class ClientDAOImpl extends AbstractDAO<Integer,Client> implements IClien
     protected static final int COLUMN_PASSWORD_HASH = 5;
    // protected static final int COLUMN_SALT = 6;
 
-    private static ClientDAOImpl clientDAO = new ClientDAOImpl();
+    private static final ClientDAOImpl clientDAO = new ClientDAOImpl();
 
     private ClientDAOImpl(){}
 

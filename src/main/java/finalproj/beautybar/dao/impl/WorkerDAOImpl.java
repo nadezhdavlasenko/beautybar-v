@@ -26,7 +26,7 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
     protected static final int COLUMN_ROLE_IDROLE = 8;
     protected static final int COLUMN_ROLE_NAME = 9;
 
-    private static WorkerDAOImpl workerDAO = new WorkerDAOImpl();
+    private static final WorkerDAOImpl workerDAO = new WorkerDAOImpl();
 
     private WorkerDAOImpl(){}
 
