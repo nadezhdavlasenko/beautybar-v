@@ -20,7 +20,9 @@ public class Servlet extends HttpServlet {
         super();
     }
 
+    @Override
     public void init() throws ServletException {
+        super.init();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -29,9 +31,7 @@ public class Servlet extends HttpServlet {
 
         String page = null;
         try {
-
             HttpSession session = request.getSession(true);
-            //session.setAttribute("current page", Config.getInstance().getProperty(Config.INDEX));
             ICommand command = controllerHelper.getCommand(request);
             page = command.execute(request, response);
         } catch (ServletException e) {
@@ -44,7 +44,6 @@ public class Servlet extends HttpServlet {
 
         }
 
-        //test for repository
         RequestDispatcher dispatcher;
         dispatcher = getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);
@@ -58,23 +57,6 @@ public class Servlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        response.setContentType("text/html");
-//        request.setCharacterEncoding("UTF-8");
-//        response.setCharacterEncoding("UTF-8");
-//        IRoleDAO roleDAO = DAOFactory.getRoleDAO();
-//        //IWorkerDAO workerDAO = DAOFactory.getWorkerDAO();
-//        ISceduleDAO sceduleDAO = DAOFactory.getSceduleDAO();
-//        IServiceTypeDAO serviceTypeDAO = DAOFactory.getServiceTypeDAO();
-//        IFeedbackDAO feedbackDAO = DAOFactory.getFeedbackDAO();
-//        try {
-//           // System.out.println(roleDAO.findAll().get(1)+ " " + roleDAO.findEntityById((long) 1));
-//            response.getWriter().print("This is " + this.getClass().getName()
-//                    + ", using the GET method: " + feedbackDAO.findAll());
-////new Worker((long) 2,new Role((long) 1)))
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -86,7 +68,7 @@ public class Servlet extends HttpServlet {
         }
     }
 
-    public void destroy() {
-        super.destroy(); // Just puts "destroy" string in log
-    }
+//    public void destroy() {
+//        super.destroy(); // Just puts "destroy" string in log
+//    }
 }
