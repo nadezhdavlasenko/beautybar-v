@@ -40,7 +40,7 @@ public class WorkerServiceDAOImpl extends AbstractDAO<Long,WorkerService> implem
 //    protected static final int COLUMN_SERVICE_TYPE_SERVICE_TYPE_ID = 18;
 //    protected static final int COLUMN_SERVICE_TYPE_NAME = 19;
 
-    private static WorkerServiceDAOImpl serviceDAO = new WorkerServiceDAOImpl();
+    private static final WorkerServiceDAOImpl serviceDAO = new WorkerServiceDAOImpl();
 
     private WorkerServiceDAOImpl(){}
 

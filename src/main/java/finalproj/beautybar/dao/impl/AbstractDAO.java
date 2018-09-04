@@ -1,20 +1,25 @@
 package finalproj.beautybar.dao.impl;
 
 import finalproj.beautybar.entity.Entity;
+import finalproj.beautybar.logging.LoggerLoader;
+import finalproj.beautybar.logging.MyErrorHandler;
 import finalproj.beautybar.pool.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractDAO <K, T extends Entity>{
+public abstract class AbstractDAO<K, T extends Entity> {
 
- protected final String SQL_SELECT_FROM = "SELECT * FROM " + getTableName();
- protected final String SQL_DELETE = "DELETE FROM " + getTableName();
- protected final String SQL_INSERT = "INSERT INTO " + getTableName();
- protected final String SQL_UPDATE = "UPDATE " + getTableName();
+    private static final Logger logger = LoggerLoader.getLogger(AbstractDAO.class);
 
-   // protected WrapperConnector connector;
+    protected final String SQL_SELECT_FROM = "SELECT * FROM " + getTableName();
+    protected final String SQL_DELETE = "DELETE FROM " + getTableName();
+    protected final String SQL_INSERT = "INSERT INTO " + getTableName();
+    protected final String SQL_UPDATE = "UPDATE " + getTableName();
+
+    // protected WrapperConnector connector;
 //    public List<T> findAll() throws Exception {
 //        return findByDynamicSelect(SQL_SELECT, null);
 //    }
@@ -40,6 +45,7 @@ public abstract class AbstractDAO <K, T extends Entity>{
                 connection.close();
             }
         } catch (SQLException e) {
+            logger.error(e, e);
 // генерация исключения, т.к. нарушается работа пула
         }
     }
@@ -66,15 +72,17 @@ public abstract class AbstractDAO <K, T extends Entity>{
             // prepare statement
             statement = connection.prepareStatement(SQL);
             // bind parameters
-            setParams(statement,sqlParams);
+            setParams(statement, sqlParams);
             resultSet = statement.executeQuery();
             // fetch the results
+            MyErrorHandler myErrorHandler = new MyErrorHandler("log.txt");
+            myErrorHandler.getLogger().info("eeee");
             return fetchMultiResults(resultSet);
         } catch (Exception ex) {
-            //logger.error(ex, ex);
+            logger.error(ex, ex);
             throw new Exception("Exception: " + ex.getMessage(), ex);
         } finally {
-          close(connection);
+            close(connection);
         }
 
     }
@@ -91,12 +99,12 @@ public abstract class AbstractDAO <K, T extends Entity>{
             // prepare statement
             statement = connection.prepareStatement(SQL);
             // bind parameters
-            setParams(statement,sqlParams);
+            setParams(statement, sqlParams);
             resultSet = statement.executeQuery();
             // fetch the results
             return fetchSingleResult(resultSet);
         } catch (Exception ex) {
-            //logger.error(ex, ex);
+            logger.error(ex, ex);
             throw new Exception("Exception: " + ex.getMessage(), ex);
         } finally {
             close(connection);
@@ -109,6 +117,7 @@ public abstract class AbstractDAO <K, T extends Entity>{
             statement.setObject(i + 1, sqlParams[i]);
         }
     }
+
     protected abstract void populateDto(T entity, ResultSet resultSet) throws SQLException;
 
     protected abstract List<T> fetchMultiResults(ResultSet resultSet) throws SQLException;
@@ -116,4 +125,4 @@ public abstract class AbstractDAO <K, T extends Entity>{
     protected abstract T fetchSingleResult(ResultSet resultSet) throws SQLException;
 
 
-    }
+}

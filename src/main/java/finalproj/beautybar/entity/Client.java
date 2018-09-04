@@ -8,25 +8,24 @@ public class Client extends Entity {
     private String email;
     private String phone;
     private String passwordHash;
-    private String salt;
+
 
     public Client(){}
 
-    public Client(String name, String email, String phone, String passwordHash, String salt) {
+    public Client(String name, String email, String phone, String passwordHash) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.passwordHash = passwordHash;
-        this.salt = salt;
+
     }
 
-    public Client(Long id, String name, String email, String phone, String passwordHash, String salt) {
+    public Client(Long id, String name, String email, String phone, String passwordHash) {
         super(id);
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.passwordHash = passwordHash;
-        this.salt = salt;
     }
 
     @Override
@@ -37,13 +36,12 @@ public class Client extends Entity {
         return Objects.equals(name, client.name) &&
                 Objects.equals(email, client.email) &&
                 Objects.equals(phone, client.phone) &&
-                Objects.equals(passwordHash, client.passwordHash) &&
-                Objects.equals(salt, client.salt);
+                Objects.equals(passwordHash, client.passwordHash);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, phone, passwordHash, salt);
+        return Objects.hash(name, email, phone, passwordHash);
     }
 
     public String getName() {
@@ -79,13 +77,6 @@ public class Client extends Entity {
         this.passwordHash = passwordHash;
     }
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
 
     @Override
     public String toString() {
@@ -94,7 +85,6 @@ public class Client extends Entity {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
-                ", salt='" + salt + '\'' +
                 '}';
     }
 }

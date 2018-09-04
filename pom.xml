@@ -41,6 +41,21 @@
                             <!--<filtering>true</filtering>-->
                             <includes>
                                 <include>index.jsp</include>
+                                <include>META-INF/main.jspx</include>
+                                <include>META-INF/settings.jsp</include>
+                                <include>META-INF/*.jsp</include>
+                                <include>jsp/login.jsp</include>
+                                <include>jsp/signup.jsp</include>
+                                <include>jsp/*.jsp</include>
+                                <include>jsp/error.jspx</include>
+                                <include>js/app.1534511936603.js</include>
+                                <include>js/babel-polyfill.1534511936603.js</include>
+                                <include>js/templates1534511931812.js</include>
+                                <include>js/*.js</include>
+                                <include>css/application1534511931812.css</include>
+                                <include>css/style.1534511936603.css</include>
+                                <include>css/*.css</include>
+
                             </includes>
                         </resource>
                     </webResources>
@@ -83,6 +98,21 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
+
     </dependencies>
 
 

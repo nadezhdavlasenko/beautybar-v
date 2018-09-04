@@ -20,7 +20,7 @@ public class ServiceTypeDAOImpl extends AbstractDAO<Long,ServiceType> implements
 
     private ServiceTypeDAOImpl(){}
 
-    public static ServiceTypeDAOImpl getServiceTypeDAO() {
+    public static final ServiceTypeDAOImpl getServiceTypeDAO() {
         return serviceTypeDAO;
     }
 

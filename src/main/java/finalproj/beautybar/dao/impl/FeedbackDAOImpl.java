@@ -5,7 +5,9 @@ import finalproj.beautybar.entity.Client;
 import finalproj.beautybar.entity.Feedback;
 import finalproj.beautybar.entity.Role;
 import finalproj.beautybar.entity.Worker;
+import finalproj.beautybar.logging.LoggerLoader;
 import finalproj.beautybar.pool.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,16 +32,16 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
     protected static final int COLUMN_CLIENT_EMAIL = 9;
     protected static final int COLUMN_CLIENT_PHONE = 10;
     protected static final int COLUMN_CLIENT_PASSWORD_HASH = 11;
-    protected static final int COLUMN_CLIENT_SALT = 12;
-    protected static final int COLUMN_WORKER_WORKERID = 13;
-    protected static final int COLUMN_WORKER_ROLEID = 14;
-    protected static final int COLUMN_WORKER_NAME = 15;
-    protected static final int COLUMN_WORKER_EMAIL = 16;
-    protected static final int COLUMN_WORKER_PHONE = 17;
-    protected static final int COLUMN_WORKER_PASSWORD_HASH = 18;
-    protected static final int COLUMN_WORKER_SALT = 19;
+   // protected static final int COLUMN_CLIENT_SALT = 12;
+    protected static final int COLUMN_WORKER_WORKERID = 12;
+    protected static final int COLUMN_WORKER_ROLEID = 13;
+    protected static final int COLUMN_WORKER_NAME = 14;
+    protected static final int COLUMN_WORKER_EMAIL = 15;
+    protected static final int COLUMN_WORKER_PHONE = 16;
+    protected static final int COLUMN_WORKER_PASSWORD_HASH = 17;
+    protected static final int COLUMN_WORKER_SALT = 18;
 
-    private static FeedbackDAOImpl feedbackDAO = new FeedbackDAOImpl();
+    private static final FeedbackDAOImpl feedbackDAO = new FeedbackDAOImpl();
 
     private FeedbackDAOImpl(){}
 
@@ -140,7 +142,8 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
         client.setEmail(resultSet.getString(COLUMN_CLIENT_EMAIL));
         client.setPhone(resultSet.getString(COLUMN_CLIENT_PHONE));
         client.setPasswordHash(resultSet.getString(COLUMN_CLIENT_PASSWORD_HASH));
-        client.setSalt(resultSet.getString(COLUMN_CLIENT_SALT));
+        //client.setSalt(resultSet.getString(COLUMN_CLIENT_SALT));
+
 
         Worker worker = new Worker();
         worker.setId(resultSet.getLong(COLUMN_WORKER_WORKERID));
@@ -151,13 +154,15 @@ public class FeedbackDAOImpl extends AbstractDAO<Long, Feedback> implements IFee
         worker.setPasswordHash(resultSet.getString(COLUMN_WORKER_PASSWORD_HASH));
         worker.setSalt(resultSet.getString(COLUMN_WORKER_SALT));
 
-        Feedback feedback = new Feedback();
-        feedback.setId(resultSet.getLong(COLUMN_FEEDBACKID));
-        feedback.setClient(client);
-        feedback.setWorker(worker);
-        feedback.setText(resultSet.getString(COLUMN_TEXT));
-        feedback.setMark(resultSet.getInt(COLUMN_MARK));
-        feedback.setDate(resultSet.getDate(COLUMN_DATE));
+
+        entity.setId(resultSet.getLong(COLUMN_FEEDBACKID));
+        entity.setClient(client);
+        entity.setWorker(worker);
+        entity.setText(resultSet.getString(COLUMN_TEXT));
+        entity.setMark(resultSet.getInt(COLUMN_MARK));
+        entity.setDate(resultSet.getDate(COLUMN_DATE));
+
+
     }
 
     @Override
