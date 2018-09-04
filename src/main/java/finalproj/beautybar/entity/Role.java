@@ -8,6 +8,9 @@ public class Role extends Entity {
 
     public Role() {}
 
+    public Role(Long id) {
+        super(id);
+    }
     public Role(String name) {
         this.name = name;
     }

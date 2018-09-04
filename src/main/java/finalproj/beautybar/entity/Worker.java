@@ -13,6 +13,13 @@ public class Worker extends Entity {
 
     public Worker() {
     }
+    public Worker(Long id) {
+        super(id);
+    }
+    public Worker(Long id, Role role) {
+        super(id);
+        this.role = role;
+    }
 
     public Worker(Role role, String name, String email, String phone, String passwordHash, String salt) {
         this.role = role;

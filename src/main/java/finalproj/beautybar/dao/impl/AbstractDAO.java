@@ -1,4 +1,4 @@
-package finalproj.beautybar.dao;
+package finalproj.beautybar.dao.impl;
 
 import finalproj.beautybar.entity.Entity;
 import finalproj.beautybar.pool.ConnectionPool;
@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractDAO <K, T extends Entity> {
+public abstract class AbstractDAO <K, T extends Entity>{
 
  protected final String SQL_SELECT_FROM = "SELECT * FROM " + getTableName();
  protected final String SQL_DELETE = "DELETE FROM " + getTableName();
@@ -34,15 +34,15 @@ public abstract class AbstractDAO <K, T extends Entity> {
 //        }
 //    }
 
-//    public void close(Connection connection) {
-//        try {
-//            if (connection != null) {
-//                connection.close();
-//            }
-//        } catch (SQLException e) {
-//// генерация исключения, т.к. нарушается работа пула
-//        }
-//    }
+    public void close(Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+// генерация исключения, т.к. нарушается работа пула
+        }
+    }
 
 //    public void close() {
 //        connector.closeConnection();
@@ -55,7 +55,7 @@ public abstract class AbstractDAO <K, T extends Entity> {
 
     public List<T> findByDynamicSelect(String sql, Object[] sqlParams) throws Exception {
         // declare variables
-        List<T> entities = new ArrayList<>();
+        //List<T> entities = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -66,9 +66,7 @@ public abstract class AbstractDAO <K, T extends Entity> {
             // prepare statement
             statement = connection.prepareStatement(SQL);
             // bind parameters
-            for (int i = 0; sqlParams != null && i < sqlParams.length; i++) {
-                statement.setObject(i + 1, sqlParams[i]);
-            }
+            setParams(statement,sqlParams);
             resultSet = statement.executeQuery();
             // fetch the results
             return fetchMultiResults(resultSet);
@@ -76,9 +74,7 @@ public abstract class AbstractDAO <K, T extends Entity> {
             //logger.error(ex, ex);
             throw new Exception("Exception: " + ex.getMessage(), ex);
         } finally {
-         if (connection != null){
-          connection.close();
-         }
+          close(connection);
         }
 
     }
@@ -95,9 +91,7 @@ public abstract class AbstractDAO <K, T extends Entity> {
             // prepare statement
             statement = connection.prepareStatement(SQL);
             // bind parameters
-            for (int i = 0; sqlParams != null && i < sqlParams.length; i++) {
-                statement.setObject(i + 1, sqlParams[i]);
-            }
+            setParams(statement,sqlParams);
             resultSet = statement.executeQuery();
             // fetch the results
             return fetchSingleResult(resultSet);
@@ -105,14 +99,20 @@ public abstract class AbstractDAO <K, T extends Entity> {
             //logger.error(ex, ex);
             throw new Exception("Exception: " + ex.getMessage(), ex);
         } finally {
-         if (connection != null){
-          connection.close();
-         }
+            close(connection);
         }
 
     }
-    protected abstract List<T> fetchMultiResults(ResultSet resultSet) throws SQLException;
+
+    public void setParams(PreparedStatement statement, Object[] sqlParams) throws SQLException {
+        for (int i = 0; sqlParams != null && i < sqlParams.length; i++) {
+            statement.setObject(i + 1, sqlParams[i]);
+        }
+    }
     protected abstract void populateDto(T entity, ResultSet resultSet) throws SQLException;
+
+    protected abstract List<T> fetchMultiResults(ResultSet resultSet) throws SQLException;
+
     protected abstract T fetchSingleResult(ResultSet resultSet) throws SQLException;
 
 

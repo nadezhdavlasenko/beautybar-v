@@ -6,6 +6,8 @@ public class ServiceType extends Entity{
 
     private String name;
 
+    public ServiceType(){}
+
     public ServiceType(String name) {
         this.name = name;
     }

@@ -1,8 +1,7 @@
 package finalproj.beautybar.dao.impl;
 
-import finalproj.beautybar.dao.IWorkerDAO;
-import finalproj.beautybar.entity.Role;
-import finalproj.beautybar.entity.Worker;
+import finalproj.beautybar.dao.IClientDAO;
+import finalproj.beautybar.entity.Client;
 import finalproj.beautybar.pool.ConnectionPool;
 
 import java.sql.Connection;
@@ -12,36 +11,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerDAO {
+public class ClientDAOImpl extends AbstractDAO<Integer,Client> implements IClientDAO{
 
-    protected final String SQL_INNER_JOIN = " INNER JOIN role ON worker.idrole=role.idrole";
+    protected static final int COLUMN_CLIENTID = 1;
+    protected static final int COLUMN_NAME = 2;
+    protected static final int COLUMN_EMAIL = 3;
+    protected static final int COLUMN_PHONE = 4;
+    protected static final int COLUMN_PASSWORD_HASH = 5;
+    protected static final int COLUMN_SALT = 6;
 
-    protected static final int COLUMN_WORKERID = 1;
-    protected static final int COLUMN_ROLEID = 2;
-    protected static final int COLUMN_NAME = 3;
-    protected static final int COLUMN_EMAIL = 4;
-    protected static final int COLUMN_PHONE = 5;
-    protected static final int COLUMN_PASSWORD_HASH = 6;
-    protected static final int COLUMN_SALT = 7;
-    protected static final int COLUMN_ROLE_IDROLE = 8;
-    protected static final int COLUMN_ROLE_NAME = 9;
+    private static ClientDAOImpl clientDAO = new ClientDAOImpl();
 
-    private static WorkerDAOImpl workerDAO = new WorkerDAOImpl();
+    private ClientDAOImpl(){}
 
-    private WorkerDAOImpl(){}
-
-    public static WorkerDAOImpl getWorkerDAO(){
-        return workerDAO;
+    public static ClientDAOImpl getClientDAO(){
+        return clientDAO;
     }
 
     @Override
-    public List<Worker> findAll() throws Exception {
-        return findByDynamicSelect(SQL_SELECT_FROM + SQL_INNER_JOIN, null);
+    public List<Client> findAll() throws Exception {
+        return findByDynamicSelect(SQL_SELECT_FROM, null);
     }
 
     @Override
-    public Worker findEntityById(Long id) throws Exception {
-        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDWORKER = ?" + SQL_INNER_JOIN, new Object[]{id});
+    public Client findEntityById(Long id) throws Exception {
+        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDCLIENT = ?", new Object[]{id});
     }
 
     @Override
@@ -50,7 +44,7 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getConnection();
-            final String SQL = SQL_DELETE + " WHERE IDWORKER = ?";
+            final String SQL = SQL_DELETE + " WHERE IDCLIENT = ?";
             System.out.println("Executing " + SQL);
             // prepare statement
             statement = connection.prepareStatement(SQL);
@@ -67,15 +61,15 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
     }
 
     @Override
-    public Boolean create(Worker entity) throws Exception {
+    public Boolean create(Client entity) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getConnection();
-            final String SQL = SQL_INSERT + " (`idrole`, `name`, `email`, `phone`, `password_hash`, `salt`) VALUES (?, ?, ?, ?, ?, ?)";
+            final String SQL = SQL_INSERT + " (`name`, `email`, `phone`, `password_hash`, `salt`) VALUES (?, ?, ?, ?, ?, ?)";
             System.out.println("Executing " + SQL);
             statement = connection.prepareStatement(SQL);
-            Object[] sqlParams = new Object[]{entity.getRole().getId(),
+            Object[] sqlParams = new Object[]{
                     entity.getName(),entity.getEmail(),
                     entity.getPhone(), entity.getPasswordHash(),
                     entity.getSalt()};
@@ -91,15 +85,15 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
     }
 
     @Override
-    public Worker update(Worker entity) throws SQLException {
+    public Client update(Client entity) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getConnection();
-            final String SQL = SQL_UPDATE + " SET `idrole`= ?, `name`= ?, `email`= ?, `phone`, `password_hash`= ?, `salt`= ? WHERE `idworker`= ?";
+            final String SQL = SQL_UPDATE + " SET `name`= ?, `email`= ?, `phone`, `password_hash`= ?, `salt`= ? WHERE `idCLIENT`= ?";
             System.out.println("Executing " + SQL);
             statement = connection.prepareStatement(SQL);
-            Object[] sqlParams = new Object[]{entity.getRole().getId(),
+            Object[] sqlParams = new Object[]{
                     entity.getName(),entity.getEmail(),
                     entity.getPhone(), entity.getPasswordHash(),
                     entity.getSalt(), entity.getId()};
@@ -116,14 +110,14 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
 
     @Override
     public String getTableName() {
-        return "worker";
+        return "CLIENT";
     }
 
     @Override
-    protected List<Worker> fetchMultiResults(ResultSet resultSet) throws SQLException {
-        List<Worker> resultList = new ArrayList();
+    protected List<Client> fetchMultiResults(ResultSet resultSet) throws SQLException {
+        List<Client> resultList = new ArrayList();
         while (resultSet.next()) {
-            Worker entity = new Worker();
+            Client entity = new Client();
             populateDto(entity, resultSet);
             resultList.add(entity);
         }
@@ -131,9 +125,8 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
     }
 
     @Override
-    protected void populateDto(Worker entity, ResultSet resultSet) throws SQLException {
-        entity.setId(resultSet.getLong(COLUMN_WORKERID));
-        entity.setRole(new Role(resultSet.getLong(COLUMN_ROLE_IDROLE),resultSet.getString(COLUMN_ROLE_NAME)));
+    protected void populateDto(Client entity, ResultSet resultSet) throws SQLException {
+        entity.setId(resultSet.getLong(COLUMN_CLIENTID));
         entity.setName(resultSet.getString(COLUMN_NAME));
         entity.setEmail(resultSet.getString(COLUMN_EMAIL));
         entity.setPhone(resultSet.getString(COLUMN_PHONE));
@@ -142,9 +135,9 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
     }
 
     @Override
-    protected Worker fetchSingleResult(ResultSet resultSet) throws SQLException {
+    protected Client fetchSingleResult(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
-            Worker entity = new Worker();
+            Client entity = new Client();
             populateDto(entity, resultSet);
             return entity;
         } else {

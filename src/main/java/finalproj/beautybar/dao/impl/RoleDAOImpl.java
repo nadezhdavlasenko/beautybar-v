@@ -1,6 +1,5 @@
 package finalproj.beautybar.dao.impl;
 
-import finalproj.beautybar.dao.AbstractDAO;
 import finalproj.beautybar.dao.IRoleDAO;
 import finalproj.beautybar.entity.Role;
 import finalproj.beautybar.pool.ConnectionPool;
@@ -32,7 +31,8 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
 
     @Override
     public Role findEntityById(Long id) throws Exception {
-        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDROLE = ?", new Object[]{id}); }
+        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDROLE = ?", new Object[]{id});
+    }
 
     @Override
     public Boolean delete(Long id) throws Exception {
@@ -45,16 +45,14 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
             // prepare statement
             statement = connection.prepareStatement(SQL);
             statement.setObject(1, id);
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
             return false;
         }
         finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
 
     }
@@ -74,15 +72,13 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
             System.out.println("Executing " + SQL + ". ? = " + entity.getTypeName());
             statement = connection.prepareStatement(SQL);
             statement.setObject(1, entity.getTypeName());
-            statement.execute();
+            statement.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();
             return false;
         }finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
     }
 
@@ -102,9 +98,7 @@ public class RoleDAOImpl extends AbstractDAO<Long, Role> implements IRoleDAO {
         } catch (Exception ex){
             ex.printStackTrace();
         }finally {
-            if (connection != null){
-                connection.close();
-            }
+            close(connection);
         }
         return null;
     }

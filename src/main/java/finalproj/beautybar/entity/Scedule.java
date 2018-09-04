@@ -22,6 +22,12 @@ public class Scedule extends Entity{
     private Time startSun;
     private Time endSun;
 
+    public Scedule() {
+    }
+    public Scedule(Worker worker) {
+        this.worker = worker;
+    }
+
     public Scedule(Worker worker, Time startMon, Time endMon, Time startTue, Time endTue, Time startWed, Time endWed, Time startThu, Time endThu, Time startFri, Time endFri, Time startSat, Time endSat, Time startSun, Time endSun) {
         this.worker = worker;
         this.startMon = startMon;
