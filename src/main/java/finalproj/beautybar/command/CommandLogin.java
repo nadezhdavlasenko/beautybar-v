@@ -26,7 +26,7 @@ public class CommandLogin implements ICommand{
         LoginService loginService = LoginService.getLoginService();
         if (loginService.authentificate(login,password)) {
             session.setAttribute("user", login);
-            page = request.getRequestURI() +       // "/servlet"
+            page = request.getRequestURI() +       // "/servlettest"
                     "?" + session.getAttribute("currentquery").toString();
 
         } else {
