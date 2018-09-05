@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ChooseServiceService {
 
-    private static ChooseServiceService chooseServiceService = new ChooseServiceService();
+    private static final ChooseServiceService chooseServiceService = new ChooseServiceService();
 
     private ChooseServiceService(){}
 
@@ -35,6 +35,18 @@ public class ChooseServiceService {
         List<Service> list = new ArrayList<>();
         try {
             list = serviceDAO.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Service> getServiceIdByName(String name){
+        IServiceDAO serviceDAO = DAOFactory.getServiceDAO();
+        List<Service> list = new ArrayList<>();
+        try {
+           // serviceDAO.findEntityById()
+//            getAllServices().stream().filter((p)-> p.getName().equals(name)).forEach(list::add);
         } catch (Exception e) {
             e.printStackTrace();
         }

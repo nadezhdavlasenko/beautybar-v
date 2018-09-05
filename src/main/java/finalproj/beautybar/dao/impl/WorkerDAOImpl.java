@@ -40,10 +40,19 @@ public class WorkerDAOImpl extends AbstractDAO<Long, Worker> implements IWorkerD
     }
 
     @Override
-    public Worker findEntityById(Long id) throws Exception {
-        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDWORKER = ?" + SQL_INNER_JOIN, new Object[]{id});
+    public Worker findEntityById(Long id)  {
+        try {
+            return  findOneByDynamicSelect(SQL_SELECT_FROM + SQL_INNER_JOIN + " WHERE worker.IDWORKER = ?", new Object[]{id});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
+//    @Override
+//    public Worker findEntityByName(String name) throws Exception {
+//        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE NAME = ?" + SQL_INNER_JOIN, new Object[]{name});
+//    }
     @Override
     public Boolean delete(Long id) throws Exception {
         Connection connection = null;

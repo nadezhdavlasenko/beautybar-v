@@ -96,7 +96,7 @@
 
 <script src="../js/babel-polyfill.1535711700647.js"></script>
 <script src="../js/vendor.1535711700647.js"></script>
-<script src="app.1535711700647.js"></script>
+<script src="../js/app.1535711700647.js"></script>
 
 <link rel="stylesheet" href="../css/style.1535711700647.css">
 
@@ -161,7 +161,7 @@
                                 <table>
                                     <c:forEach items="${services}" var="item">
                                         <tr>
-                                            <td><a href="Servlettest?command=choosedate&service=${item}">
+                                            <td><a href="Servlettest?command=choosemaster&service=${item}">
                                                 <!-- ngIf: $ctrl.is_charge_active -->
                                                 <!-- ngIf: $ctrl.isLoaded === false -->
                                                 <!-- ngIf: $ctrl.servicesIsFlatten -->
