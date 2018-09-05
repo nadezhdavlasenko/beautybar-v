@@ -8,7 +8,7 @@ import java.util.List;
 public interface IWorkerDAO {
 
     List<Worker> findAll() throws Exception;
-    Worker findEntityById(Long id) throws Exception;
+    Worker findEntityById(Long id);
     Boolean delete(Long id) throws Exception;
     Boolean create(Worker entity) throws Exception;
     Worker update(Worker entity) throws SQLException;
