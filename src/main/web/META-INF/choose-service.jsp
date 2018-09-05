@@ -96,7 +96,7 @@
 
 <script src="../js/babel-polyfill.1535711700647.js"></script>
 <script src="../js/vendor.1535711700647.js"></script>
-<script src="app.1535711700647.js"></script>
+<script src="../js/app.1535711700647.js"></script>
 
 <link rel="stylesheet" href="../css/style.1535711700647.css">
 

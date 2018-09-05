@@ -9,6 +9,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="gr__n79452_yclients_com">
 <head>
+    <title>Welcome to Kendo UI</title>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.2.620/styles/kendo.blueopal.min.css" />
+
+    <script src="http://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
+    <script>
+        if (typeof jQuery == "undefined") {
+            // fallback to local jQuery
+            document.write(decodeURIComponent('%3Cscript src="/path/to/local/jquery.min.js" %3E%3C/script%3E'));
+        }
+    </script>
+
+    <script src="http://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+    <script>
+        if (typeof kendo == "undefined") {
+            // checking for loaded CSS files is cumbersome,
+            // that's why we assume that if the scripts have failed, so have the stylesheets
+
+            // fallback to local Kendo UI stylesheets
+            document.write(decodeURIComponent('%3Clink rel="stylesheet" href="/path/to/local/kendo.common.min.css" %3C/%3E'));
+            document.write(decodeURIComponent('%3Clink rel="stylesheet" href="/path/to/local/kendo.blueopal.min.css" %3C/%3E'));
+
+            // fallback to local Kendo UI scripts
+            document.write(decodeURIComponent('%3Cscript src="/path/to/local/kendo.all.min.js" %3E%3C/script%3E'));
+            // also add kendo.aspnetmvc.min.js or kendo.timezones.min.js, if needed
+        }
+    </script>
+
+
     <style type="text/css">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
         display: none !important;
     }
@@ -96,7 +125,7 @@
 
 <script src="../js/babel-polyfill.1535711700647.js"></script>
 <script src="../js/vendor.1535711700647.js"></script>
-<script src="app.1535711700647.js"></script>
+<script src="../js/app.1535711700647.js"></script>
 
 <link rel="stylesheet" href="../css/style.1535711700647.css">
 
@@ -128,7 +157,7 @@
                         <div class="cover">
                             <div ng-style="{'background-image': 'url(' + $root.headerImage + ')'}"
                                  class="title-wrapper y-header-toolbar-wrapper"
-                                 style="background-image: url(&quot;https://w79452.yclients.com/uploads/widget_header/3/31/3114ff3abe58cba_20170828142555.jpeg&quot;);">
+                                 style="background-image: url('https://w79452.yclients.com/uploads/widget_header/3/31/3114ff3abe58cba_20170828142555.jpeg');">
                                 <yclients-default-subheader class="y-subheader ng-isolate-scope">
                                     <div class="center-500 header-breadcrumbs">
                                         <div class="center-500 header-breadcrumbs" y-title="$ctrl.getTitle()"
@@ -149,443 +178,459 @@
                                 <div class="mask y-header-backdrop"></div>
                             </div>
                         </div>
-                        <div layout-padding="layout-padding" layout-margin="layout-margin" class="content">
-                            <yclients-record-date class="ng-isolate-scope">
-                                <div class="date-wrapper slide" layout="column" ng-swipe-right="$ctrl.prevTab()"
-                                     ng-swipe-left="$ctrl.nextTab()"><!-- ngIf: ctrl.noDates -->
-                                    <!-- ngIf: !ctrl.noDates -->
-                                    <div ng-if="!ctrl.noDates" class="ng-scope">
-                                        <div class="main-background-color-900 tabs-wrapper">
-                                            <div class="md-tabs center-500"><a
-                                                    class="text-color-50 go-to-left y-accent-text-color go-to-left__disabled"
-                                                    href="javascript:void(0)" ng-click="$ctrl.setTab(-1)" ng-class="{
-                    'go-to-left__disabled': !$ctrl.tabs[$ctrl.currentTabIndex-1]
-                        || !$ctrl.tabs[$ctrl.currentTabIndex-1].active
-                    }"><i class="fa fa-angle-left"></i> </a><a class="text-color-50 go-to-right y-accent-text-color"
-                                                               href="javascript:void(0)" ng-click="$ctrl.setTab(1)"
-                                                               ng-class="{
-                    'go-to-right__disabled': !$ctrl.tabs[$ctrl.currentTabIndex+1]
-                        || !$ctrl.tabs[$ctrl.currentTabIndex+1].active
-                }"><i class="fa fa-angle-right"></i> </a>
-                                                <!-- ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->
-                                                <button ng-disabled="!tab.active"
-                                                        class="y-button y-button_transparent md-tab ng-scope md-tab__disabled md-tab__previous"
-                                                        ng-class="{
-                        'md-active': $index === 1,
-                        'md-tab__disabled': !tab.active,
-                        'md-tab__previous': $index + $ctrl.begin < $ctrl.currentTabIndex,
-                        'md-tab__next': $index + $ctrl.begin > $ctrl.currentTabIndex
-                    }" ng-click="$ctrl.setTabByIndex($index + $ctrl.begin)"
-                                                        ng-repeat="tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin"
-                                                        disabled="disabled"><span
-                                                        class="month y-accent-text-color ng-binding">Август</span> <span
-                                                        class="year y-accent-text-color ng-binding">2018</span></button>
-                                                <!-- end ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->
-                                                <button ng-disabled="!tab.active"
-                                                        class="y-button y-button_transparent md-tab ng-scope md-active"
-                                                        ng-class="{
-                        'md-active': $index === 1,
-                        'md-tab__disabled': !tab.active,
-                        'md-tab__previous': $index + $ctrl.begin < $ctrl.currentTabIndex,
-                        'md-tab__next': $index + $ctrl.begin > $ctrl.currentTabIndex
-                    }" ng-click="$ctrl.setTabByIndex($index + $ctrl.begin)"
-                                                        ng-repeat="tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin">
-                                                    <span class="month y-accent-text-color ng-binding">Сентябрь</span>
-                                                    <span class="year y-accent-text-color ng-binding">2018</span>
-                                                </button>
-                                                <!-- end ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->
-                                                <button ng-disabled="!tab.active"
-                                                        class="y-button y-button_transparent md-tab ng-scope md-tab__next"
-                                                        ng-class="{
-                        'md-active': $index === 1,
-                        'md-tab__disabled': !tab.active,
-                        'md-tab__previous': $index + $ctrl.begin < $ctrl.currentTabIndex,
-                        'md-tab__next': $index + $ctrl.begin > $ctrl.currentTabIndex
-                    }" ng-click="$ctrl.setTabByIndex($index + $ctrl.begin)"
-                                                        ng-repeat="tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin">
-                                                    <span class="month y-accent-text-color ng-binding">Октябрь</span>
-                                                    <span class="year y-accent-text-color ng-binding">2018</span>
-                                                </button>
-                                                <!-- end ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->
-                                            </div>
-                                        </div>
-                                        <div class="y-content-block light-background-color days-wrapper">
-                                            <!-- ngIf: !$ctrl.isLoaded --><!-- ngIf: $ctrl.isLoaded -->
-                                            <div class="center-500 date-days-wrapper ng-scope" ng-if="$ctrl.isLoaded">
-                                                <!-- ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <div class="calendar-wrapper light-background-color ng-scope ng-isolate-scope"
-                                                     ng-repeat="tab in $ctrl.tabs"
-                                                     ng-if="$ctrl.isCurrent(tab) &amp;&amp; $ctrl.isLoaded"
-                                                     click="$ctrl.setDate" data="$ctrl.dates" date="tab.title"><span
-                                                        class="day ng-binding">Пн</span> <span
-                                                        class="day ng-binding">Вт</span> <span
-                                                        class="day ng-binding">Ср</span> <span
-                                                        class="day ng-binding">Чт</span> <span
-                                                        class="day ng-binding">Пт</span> <span
-                                                        class="day ng-binding">Сб</span> <span
-                                                        class="day ng-binding">Вс</span>
-                                                    <!-- quickNgRepeat: d in calendarCtrl.dates --><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">27</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">28</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">29</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">30</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">31</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">1</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">2</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">3</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">4</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">5</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">6</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">7</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">8</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">9</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">10</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">11</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">12</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">13</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">14</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">15</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">16</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">17</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">18</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">19</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">20</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">21</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">22</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">23</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">24</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">25</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">26</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">27</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">28</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">29</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding worked calendar-active-day"
-                                                            ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">30</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">1</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">2</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">3</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">4</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">5</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">6</button></span><span
-                                                            class="day ng-scope"
-                                                            quick-ng-repeat="d in calendarCtrl.dates"
-                                                            quick-repeat-list="calendar"><button
-                                                            class="y-button y-button_transparent ng-binding" ng-class="{
-                'worked calendar-active-day': calendarCtrl.isEnabled(d),
-                'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)
-            }" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">7</button></span>
-                                                    <div style="clear:both"></div>
-                                                </div><!-- end ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs -->
-                                                <!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->
-                                                <!-- end ngRepeat: tab in $ctrl.tabs --></div>
-                                            <!-- end ngIf: $ctrl.isLoaded --></div>
-                                        <div class="caption-help center-500"><p class="text-weekend ng-binding">
-                                            Выходной</p>
-                                            <p class="text-no-record ng-binding">Рабочий, записи нет</p>
-                                            <p class="text-exist-record calendar-active-day ng-binding">Рабочий, запись
-                                                есть</p></div>
-                                    </div><!-- end ngIf: !ctrl.noDates --></div>
-                            </yclients-record-date>
-                        </div>
+
+
+                        <div id="calendar"></div>
+                        <script>
+                            $("#calendar").kendoCalendar({
+                                disableDates: function (date) {
+                                    var disabled = [13,14,20,21];
+                                    if (date && disabled.indexOf(date.getDate()) > -1 ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                            });
+                        </script>
+
+                        <%--<div layout-padding="layout-padding" layout-margin="layout-margin" class="content">--%>
+                            <%--<yclients-record-date class="ng-isolate-scope">--%>
+                                <%--<div class="date-wrapper slide" layout="column" ng-swipe-right="$ctrl.prevTab()"--%>
+                                     <%--ng-swipe-left="$ctrl.nextTab()"><!-- ngIf: ctrl.noDates -->--%>
+                                    <%--<!-- ngIf: !ctrl.noDates -->--%>
+                                    <%--<div ng-if="!ctrl.noDates" class="ng-scope">--%>
+                                        <%--<div class="main-background-color-900 tabs-wrapper">--%>
+                                            <%--<div class="md-tabs center-500"><a--%>
+                                                    <%--class="text-color-50 go-to-left y-accent-text-color go-to-left__disabled"--%>
+                                                    <%--href="javascript:void(0)" ng-click="$ctrl.setTab(-1)" ng-class="{--%>
+                    <%--'go-to-left__disabled': !$ctrl.tabs[$ctrl.currentTabIndex-1]--%>
+                        <%--|| !$ctrl.tabs[$ctrl.currentTabIndex-1].active--%>
+                    <%--}"><i class="fa fa-angle-left"></i> </a><a class="text-color-50 go-to-right y-accent-text-color"--%>
+                                                               <%--href="javascript:void(0)" ng-click="$ctrl.setTab(1)"--%>
+                                                               <%--ng-class="{--%>
+                    <%--'go-to-right__disabled': !$ctrl.tabs[$ctrl.currentTabIndex+1]--%>
+                        <%--|| !$ctrl.tabs[$ctrl.currentTabIndex+1].active--%>
+                <%--}"><i class="fa fa-angle-right"></i> </a>--%>
+                                                <%--<!-- ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->--%>
+                                                <%--<button ng-disabled="!tab.active"--%>
+                                                        <%--class="y-button y-button_transparent md-tab ng-scope md-tab__disabled md-tab__previous"--%>
+                                                        <%--ng-class="{--%>
+                        <%--'md-active': $index === 1,--%>
+                        <%--'md-tab__disabled': !tab.active,--%>
+                        <%--'md-tab__previous': $index + $ctrl.begin < $ctrl.currentTabIndex,--%>
+                        <%--'md-tab__next': $index + $ctrl.begin > $ctrl.currentTabIndex--%>
+                    <%--}" ng-click="$ctrl.setTabByIndex($index + $ctrl.begin)"--%>
+                                                        <%--ng-repeat="tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin"--%>
+                                                        <%--disabled="disabled"><span--%>
+                                                        <%--class="month y-accent-text-color ng-binding">Август</span> <span--%>
+                                                        <%--class="year y-accent-text-color ng-binding">2018</span></button>--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->--%>
+                                                <%--<button ng-disabled="!tab.active"--%>
+                                                        <%--class="y-button y-button_transparent md-tab ng-scope md-active"--%>
+                                                        <%--ng-class="{--%>
+                        <%--'md-active': $index === 1,--%>
+                        <%--'md-tab__disabled': !tab.active,--%>
+                        <%--'md-tab__previous': $index + $ctrl.begin < $ctrl.currentTabIndex,--%>
+                        <%--'md-tab__next': $index + $ctrl.begin > $ctrl.currentTabIndex--%>
+                    <%--}" ng-click="$ctrl.setTabByIndex($index + $ctrl.begin)"--%>
+                                                        <%--ng-repeat="tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin">--%>
+                                                    <%--<span class="month y-accent-text-color ng-binding">Сентябрь</span>--%>
+                                                    <%--<span class="year y-accent-text-color ng-binding">2018</span>--%>
+                                                <%--</button>--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->--%>
+                                                <%--<button ng-disabled="!tab.active"--%>
+                                                        <%--class="y-button y-button_transparent md-tab ng-scope md-tab__next"--%>
+                                                        <%--ng-class="{--%>
+                        <%--'md-active': $index === 1,--%>
+                        <%--'md-tab__disabled': !tab.active,--%>
+                        <%--'md-tab__previous': $index + $ctrl.begin < $ctrl.currentTabIndex,--%>
+                        <%--'md-tab__next': $index + $ctrl.begin > $ctrl.currentTabIndex--%>
+                    <%--}" ng-click="$ctrl.setTabByIndex($index + $ctrl.begin)"--%>
+                                                        <%--ng-repeat="tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin">--%>
+                                                    <%--<span class="month y-accent-text-color ng-binding">Октябрь</span>--%>
+                                                    <%--<span class="year y-accent-text-color ng-binding">2018</span>--%>
+                                                <%--</button>--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs | limitTo:$ctrl.limit:$ctrl.begin -->--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="y-content-block light-background-color days-wrapper">--%>
+                                            <%--<!-- ngIf: !$ctrl.isLoaded --><!-- ngIf: $ctrl.isLoaded -->--%>
+                                            <%--<div class="center-500 date-days-wrapper ng-scope" ng-if="$ctrl.isLoaded">--%>
+                                                <%--<!-- ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<div class="calendar-wrapper light-background-color ng-scope ng-isolate-scope"--%>
+                                                     <%--ng-repeat="tab in $ctrl.tabs"--%>
+                                                     <%--ng-if="$ctrl.isCurrent(tab) &amp;&amp; $ctrl.isLoaded"--%>
+                                                     <%--click="$ctrl.setDate" data="$ctrl.dates" date="tab.title"><span--%>
+                                                        <%--class="day ng-binding">Пн</span> <span--%>
+                                                        <%--class="day ng-binding">Вт</span> <span--%>
+                                                        <%--class="day ng-binding">Ср</span> <span--%>
+                                                        <%--class="day ng-binding">Чт</span> <span--%>
+                                                        <%--class="day ng-binding">Пт</span> <span--%>
+                                                        <%--class="day ng-binding">Сб</span> <span--%>
+                                                        <%--class="day ng-binding">Вс</span>--%>
+                                                    <%--<!-- quickNgRepeat: d in calendarCtrl.dates --><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">27</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">28</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">29</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">30</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">31</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">1</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">2</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">3</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">4</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">5</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">6</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">7</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">8</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">9</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">10</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">11</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">12</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">13</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">14</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">15</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">16</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">17</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">18</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">19</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">20</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">21</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">22</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">23</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">24</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">25</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">26</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">27</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">28</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">29</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding worked calendar-active-day"--%>
+                                                            <%--ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)">30</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">1</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">2</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">3</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">4</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">5</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">6</button></span><span--%>
+                                                            <%--class="day ng-scope"--%>
+                                                            <%--quick-ng-repeat="d in calendarCtrl.dates"--%>
+                                                            <%--quick-repeat-list="calendar"><button--%>
+                                                            <%--class="y-button y-button_transparent ng-binding" ng-class="{--%>
+                <%--'worked calendar-active-day': calendarCtrl.isEnabled(d),--%>
+                <%--'worked worked-lock': calendarCtrl.isWorked(d) &amp;&amp; !calendarCtrl.isEnabled(d)--%>
+            <%--}" ng-click="calendarCtrl.click(d)" ng-disabled="!calendarCtrl.isEnabled(d)" disabled="disabled">7</button></span>--%>
+                                                    <%--<div style="clear:both"></div>--%>
+                                                <%--</div><!-- end ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs -->--%>
+                                                <%--<!-- ngIf: $ctrl.isCurrent(tab) && $ctrl.isLoaded -->--%>
+                                                <%--<!-- end ngRepeat: tab in $ctrl.tabs --></div>--%>
+                                            <%--<!-- end ngIf: $ctrl.isLoaded --></div>--%>
+                                        <%--<div class="caption-help center-500"><p class="text-weekend ng-binding">--%>
+                                            <%--Выходной</p>--%>
+                                            <%--<p class="text-no-record ng-binding">Рабочий, записи нет</p>--%>
+                                            <%--<p class="text-exist-record calendar-active-day ng-binding">Рабочий, запись--%>
+                                                <%--есть</p></div>--%>
+                                    <%--</div><!-- end ngIf: !ctrl.noDates --></div>--%>
+                            <%--</yclients-record-date>--%>
+                        <%--</div>--%>
                     </div>
                     <style>
                         .main-color {
