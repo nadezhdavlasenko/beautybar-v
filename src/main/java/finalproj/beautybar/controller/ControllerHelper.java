@@ -17,6 +17,7 @@ public class ControllerHelper {
         commands.put("chooseservice", new CommandChooseService());
         commands.put("choosedate", new CommandChooseDate());
         commands.put("choosemaster", new CommandChooseMaster());
+        commands.put("choosetime", new CommandChooseTime());
 
     }
 

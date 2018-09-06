@@ -16,6 +16,7 @@ public class CommandChooseDate implements ICommand {
         HttpSession session = request.getSession();
         session.setAttribute("currentquery", request.getQueryString());
         String master = request.getParameter("master");
+        session.setAttribute("master", master);
         ChooseDateService chooseDateService = ChooseDateService.getChooseDateService();
         List<Integer> disabledDays = chooseDateService.getDisabledDaysByMasterName(master);
         List<Date> disabledDates = chooseDateService.getDisabledDatesByMasterName(master);

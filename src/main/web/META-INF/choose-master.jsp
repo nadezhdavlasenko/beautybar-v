@@ -119,7 +119,7 @@
 
                                                 <div class="center-500 y-masters-list y-masters-list_mt">
 <table>
-<c:forEach items="${services}" var="item">
+<c:forEach items="${masters}" var="item">
     <tr>
     <td><a href="Servlettest?command=choosedate&master=${item}">
                                                     <!-- ngIf: $ctrl.isLoaded !== true -->

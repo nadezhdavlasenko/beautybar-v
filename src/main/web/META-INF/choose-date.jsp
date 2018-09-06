@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: nadezhdavlasenko
@@ -179,8 +180,11 @@
                             </div>
                         </div>
 
-
+                        <form id="choose-date" method="POST" action="Servlettest">
+                            <input type="hidden" name="command" value ="choosetime">
+                            <input type="hidden" name="date" id="selectedDate" value ="">
                         <div id="calendar"></div>
+                        </form>
 
                         <script>
                             var disabled  = new Array();
@@ -190,10 +194,6 @@
                             i++;
                             </c:forEach>
 
-                            //console.log(dates);
-//                            var disabled = new Array();
-//                            disabled[0]= 1;
-//                            disabled[1]=2;
                             $("#calendar").kendoCalendar({
 
                                 value: new Date(),
@@ -212,6 +212,16 @@
                                     } else {
                                         return false;
                                     }
+
+                                },
+                                change: function() {
+                                    var value = this.value();
+                                    console.log(value);//value is the selected date in the calendar
+                                    var selectedDate = document.getElementById("selectedDate");
+                                    selectedDate.value = value;
+                                    var form = document.getElementById("choose-date");
+                                    form.submit();
+
                                 }
 
 //                                disableDates: function (date) {

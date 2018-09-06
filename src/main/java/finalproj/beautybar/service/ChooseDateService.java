@@ -21,8 +21,6 @@ public class ChooseDateService {
     private ChooseDateService() {
     }
 
-    ;
-
     public static ChooseDateService getChooseDateService() {
         return CHOOSE_DATE_SERVICE;
     }
@@ -49,11 +47,6 @@ public class ChooseDateService {
         if (scedule.getStartSat() == null) list.add(6);
         if (scedule.getStartSun() == null) list.add(0);
 
-        Integer[] array = new Integer[list.size()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = list.get(i);
-        }
-        System.out.println(Arrays.toString(array));
         return list;
     }
 
@@ -61,65 +54,9 @@ public class ChooseDateService {
         List<Date> dates = new ArrayList<>();
         Scedule scedule = getSceduleByMasterName(name);
         System.out.println(scedule);
-        List<Booking> bookingList = new ArrayList<>();
-        IBookingDAO bookingDAO = DAOFactory.getBookingDAO();
-        IWorkerDAO workerDAO = DAOFactory.getWorkerDAO();
         Calendar calendar = Calendar.getInstance();
-        //c.setTime(yourDate);
-
-        List<Booking> allBookings = bookingDAO.findAll();
-        allBookings.forEach(System.out::println);
-        allBookings.forEach((p)-> System.out.println(workerDAO.findEntityById(p.getWorkerService().getWorker().getId()).getName()));
-        allBookings.forEach((p)-> System.out.println(p.getWorkerService().getWorker().getId()));
-        allBookings.forEach((p)-> System.out.println(workerDAO.findEntityById(p.getWorkerService().getWorker().getId()).getName().equals(name)));
-        allBookings.forEach((p)-> System.out.println(p.getTimestamp() + " = p.getTimestamp()\n"
-                + p.getTimestamp().getNanos() + " = p.getTimestamp().getNanos()\n"
-                + System.nanoTime() + " = System.nanoTime()\n"+ (p.getTimestamp().after(new Timestamp(new Date().getTime())))));
-        bookingDAO.findAll().stream()
-                .filter(
-                        (p) -> (workerDAO.findEntityById(p.getWorkerService().getWorker().getId()).getName().equals(name))
-                        && ((p.getTimestamp().after(new Timestamp(new Date().getTime()))))
-                )
-                .forEach(bookingList::add);
-
-        Map<Date, Integer> hoursPerDate = bookingList.stream().collect(groupingBy((p)->{
-
-            calendar.setTime(p.getTimestamp());
-
-// Set time fields to zero
-            calendar.set(Calendar.HOUR_OF_DAY, 0);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.MILLISECOND, 0);
-
-// Put it back in the Date object
-            return calendar.getTime();
-
-            }, summingInt(Booking::getDuration)));
-        Map<Integer, Integer> workingHours = new HashMap<>();
-
-
-        if (scedule.getStartSun() != null) {
-            workingHours.put(1, getWorkingHours(scedule.getStartSun(), scedule.getEndSun()));
-        }
-        if (scedule.getStartMon() != null) {
-            workingHours.put(2, getWorkingHours(scedule.getStartMon(), scedule.getEndMon()));
-        }
-        if (scedule.getStartTue() != null) {
-            workingHours.put(3, getWorkingHours(scedule.getStartTue(), scedule.getEndTue()));
-        }
-        if (scedule.getStartWed() != null) {
-            workingHours.put(4, getWorkingHours(scedule.getStartWed(), scedule.getEndWed()));
-        }
-        if (scedule.getStartThu() != null) {
-            workingHours.put(5, getWorkingHours(scedule.getStartThu(), scedule.getEndThu()));
-        }
-        if (scedule.getStartFri() != null) {
-            workingHours.put(6, getWorkingHours(scedule.getStartFri(), scedule.getEndFri()));
-        }
-        if (scedule.getStartSat() != null) {
-            workingHours.put(7, getWorkingHours(scedule.getStartSat(), scedule.getEndSat()));
-        }
+        Map<Date, Integer> hoursPerDate = getHoursPerDateByMaster(name);
+        Map<Integer, Integer> workingHours = getWorkingDaysAndHoursByMaster(name);
 
         hoursPerDate.forEach((k, v) -> {
             System.out.println("k - "+ k + ", v - " + v);
@@ -130,7 +67,66 @@ public class ChooseDateService {
         return dates;
     }
 
-    private int getWorkingHours(Time startTime, Time endTime) {
+    public List<Booking> getAllBookingsByMasterAfterCurrentCurrentDate(String name) throws Exception {
+        List<Booking> list = new ArrayList<>();
+        IBookingDAO bookingDAO = DAOFactory.getBookingDAO();
+        IWorkerDAO workerDAO = DAOFactory.getWorkerDAO();
+
+        bookingDAO.findAll().stream()
+                .filter(
+                        (p) -> (workerDAO.findEntityById(p.getWorkerService().getWorker().getId()).getName().equals(name))
+                                && ((p.getTimestamp().after(new Timestamp(new Date().getTime()))))
+                )
+                .forEach(list::add);
+        return list;
+    }
+
+    public int getWorkingHours(Time startTime, Time endTime) {
         return (int) ((endTime.getTime() - startTime.getTime()) / 3600000);
+    }
+
+    private Map<Integer, Integer> getWorkingDaysAndHoursByMaster(String name) throws Exception {
+        Map<Integer, Integer> map = new HashMap<>();
+        Scedule scedule = getSceduleByMasterName(name);
+        if (scedule.getStartSun() != null) {
+            map.put(1, getWorkingHours(scedule.getStartSun(), scedule.getEndSun()));
+        }
+        if (scedule.getStartMon() != null) {
+            map.put(2, getWorkingHours(scedule.getStartMon(), scedule.getEndMon()));
+        }
+        if (scedule.getStartTue() != null) {
+            map.put(3, getWorkingHours(scedule.getStartTue(), scedule.getEndTue()));
+        }
+        if (scedule.getStartWed() != null) {
+            map.put(4, getWorkingHours(scedule.getStartWed(), scedule.getEndWed()));
+        }
+        if (scedule.getStartThu() != null) {
+            map.put(5, getWorkingHours(scedule.getStartThu(), scedule.getEndThu()));
+        }
+        if (scedule.getStartFri() != null) {
+            map.put(6, getWorkingHours(scedule.getStartFri(), scedule.getEndFri()));
+        }
+        if (scedule.getStartSat() != null) {
+            map.put(7, getWorkingHours(scedule.getStartSat(), scedule.getEndSat()));
+        }
+        return map;
+    }
+
+    private Map<Date, Integer> getHoursPerDateByMaster(String name) throws Exception {
+        Map<Date, Integer> hoursPerDate = new HashMap<>();
+        List<Booking> bookingList = getAllBookingsByMasterAfterCurrentCurrentDate(name);
+        Calendar calendar = Calendar.getInstance();
+        hoursPerDate = bookingList.stream().collect(groupingBy((p)->{
+
+            calendar.setTime(p.getTimestamp());
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+
+            return calendar.getTime();
+
+        }, summingInt(Booking::getDuration)));
+        return hoursPerDate;
     }
 }

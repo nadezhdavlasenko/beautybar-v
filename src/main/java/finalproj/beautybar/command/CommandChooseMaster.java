@@ -21,7 +21,7 @@ public class CommandChooseMaster implements ICommand {
 
         list = chooseMasterService.getAllMastersNamesByService(service);
 
-        session.setAttribute("services", list);
+        session.setAttribute("masters", list);
         page = Config.getInstance().getProperty(Config.CHOOSEMASTER);
 
         return page;
