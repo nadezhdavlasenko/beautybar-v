@@ -181,17 +181,65 @@
 
 
                         <div id="calendar"></div>
+
                         <script>
+                            var disabled  = new Array();
+                            var i = 0;
+                            <c:forEach items="${disabledDays}" var="day" varStatus="status">
+                            disabled[i] = '<c:out value='${day}'/>';
+                            i++;
+                            </c:forEach>
+
+                            //console.log(dates);
+//                            var disabled = new Array();
+//                            disabled[0]= 1;
+//                            disabled[1]=2;
                             $("#calendar").kendoCalendar({
+
+                                value: new Date(),
+                            //    disableDates: [tu, "we", 'th', 'fr', 'sa', 'su'],
+                            //    disableDates: arr,
                                 disableDates: function (date) {
-                                    var disabled = [13,14,20,21];
-                                    if (date && disabled.indexOf(date.getDate()) > -1 ) {
+                                    var dates  = new Array();
+                                    var j = 0;
+                                    <c:forEach items="${disabledString}" var="date" varStatus="status">
+                                    dates[j] = new Date('<c:out value='${date}'/>');
+                                    j++;
+                                    </c:forEach>
+                                    console.log(dates);
+                                    if (date && compareDates(date, dates)) {
                                         return true;
                                     } else {
                                         return false;
                                     }
                                 }
+
+//                                disableDates: function (date) {
+//                                    var disabled = [13,14,20,21];
+//                                    if (date && disabled.indexOf(date.getDate()) > -1 ) {
+//                                        return true;
+//                                    } else {
+//                                        return false;
+//                                    }
+//                                }
                             });
+                            function compareDates(date, dates) {
+                                for (var k = 0; k < dates.length; k++) {
+                                    if (dates[k].getDate() == date.getDate() &&
+                                        dates[k].getMonth() == date.getMonth() &&
+                                        dates[k].getYear() == date.getYear()) {
+                                        return true
+                                    }
+
+
+                                }
+                                var today = new Date();
+                                if (date < today) return true;
+                                for (var i = 0; i < disabled.length; i++) {
+                                    if (disabled[i] == date.getDay())
+                                        return true
+                                }
+                            }
                         </script>
 
                         <%--<div layout-padding="layout-padding" layout-margin="layout-margin" class="content">--%>

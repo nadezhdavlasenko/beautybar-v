@@ -179,18 +179,18 @@ public class SceduleDAOImpl extends AbstractDAO<Long, Scedule> implements IScedu
         entity.setWorker(worker);
         entity.setStartMon(resultSet.getTime(COLUMN_START_MON));
         entity.setEndMon(resultSet.getTime(COLUMN_END_MON));
-        entity.setStartMon(resultSet.getTime(COLUMN_START_TUE));
-        entity.setEndMon(resultSet.getTime(COLUMN_END_TUE));
-        entity.setStartMon(resultSet.getTime(COLUMN_START_WED));
-        entity.setEndMon(resultSet.getTime(COLUMN_END_WED));
-        entity.setStartMon(resultSet.getTime(COLUMN_START_THU));
-        entity.setEndMon(resultSet.getTime(COLUMN_END_THU));
-        entity.setStartMon(resultSet.getTime(COLUMN_START_FRI));
-        entity.setEndMon(resultSet.getTime(COLUMN_END_FRI));
-        entity.setStartMon(resultSet.getTime(COLUMN_START_SAT));
-        entity.setEndMon(resultSet.getTime(COLUMN_END_SAT));
-        entity.setStartMon(resultSet.getTime(COLUMN_START_SUN));
-        entity.setEndMon(resultSet.getTime(COLUMN_END_SUN));
+        entity.setStartTue(resultSet.getTime(COLUMN_START_TUE));
+        entity.setEndTue(resultSet.getTime(COLUMN_END_TUE));
+        entity.setStartWed(resultSet.getTime(COLUMN_START_WED));
+        entity.setEndWed(resultSet.getTime(COLUMN_END_WED));
+        entity.setStartThu(resultSet.getTime(COLUMN_START_THU));
+        entity.setEndThu(resultSet.getTime(COLUMN_END_THU));
+        entity.setStartFri(resultSet.getTime(COLUMN_START_FRI));
+        entity.setEndFri(resultSet.getTime(COLUMN_END_FRI));
+        entity.setStartSat(resultSet.getTime(COLUMN_START_SAT));
+        entity.setEndSat(resultSet.getTime(COLUMN_END_SAT));
+        entity.setStartSun(resultSet.getTime(COLUMN_START_SUN));
+        entity.setEndSun(resultSet.getTime(COLUMN_END_SUN));
     }
 
     @Override
