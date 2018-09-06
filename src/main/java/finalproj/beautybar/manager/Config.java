@@ -22,6 +22,7 @@ public class Config {
     public static final String CHOOSESERVICE = "CHOOSESERVICE";
     public static final String CHOOSESERVICETYPE = "CHOOSESERVICETYPE";
     public static final String CHOOSEDATE = "CHOOSEDATE";
+    public static final String CHOOSEMASTER = "CHOOSEMASTER";
 
     public static Config getInstance() {
         if (instance == null) {
