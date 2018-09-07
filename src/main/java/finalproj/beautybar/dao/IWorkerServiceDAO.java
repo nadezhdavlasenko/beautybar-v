@@ -9,6 +9,7 @@ public interface IWorkerServiceDAO {
 
     List<WorkerService> findAll() throws Exception;
     WorkerService findEntityById(Long id) throws Exception;
+    WorkerService findEntityByWorkerIdAndServiceId(Long workerId, Long serviceId) throws Exception;
     Boolean delete(Long id) throws Exception;
     Boolean create(WorkerService entity) throws Exception;
     WorkerService update(WorkerService entity) throws SQLException;

@@ -18,7 +18,7 @@ public class CommandChooseMaster implements ICommand {
         HttpSession session = request.getSession();
         session.setAttribute("currentquery", request.getQueryString());
         String service = request.getParameter("service");
-
+        session.setAttribute("service", service);
         list = chooseMasterService.getAllMastersNamesByService(service);
 
         session.setAttribute("masters", list);
