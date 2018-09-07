@@ -82,7 +82,7 @@ public class BookingDAOImpl extends AbstractDAO<Long, Booking> implements IBooki
                     "VALUES (?, ?, ?, ?)";
             System.out.println("Executing " + SQL);
             Object[] sqlParams = new Object[]{entity.getTimestamp(), entity.getDuration(),
-                    entity.getClient().getId(), entity.getWorkerService()};
+                    entity.getClient().getId(), entity.getWorkerService().getId()};
             statement = connection.prepareStatement(SQL);
             setParams(statement, sqlParams);
             statement.executeUpdate();
@@ -107,7 +107,7 @@ public class BookingDAOImpl extends AbstractDAO<Long, Booking> implements IBooki
             System.out.println("Executing " + SQL);
             statement = connection.prepareStatement(SQL);
             Object[] sqlParams = new Object[]{entity.getTimestamp(), entity.getDuration(),
-                    entity.getClient().getId(), entity.getWorkerService(), entity.getId()};
+                    entity.getClient().getId(), entity.getWorkerService().getId(), entity.getId()};
             setParams(statement,sqlParams);
             statement.executeUpdate();
             return entity;

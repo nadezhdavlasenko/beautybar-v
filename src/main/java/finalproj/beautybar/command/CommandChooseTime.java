@@ -18,14 +18,13 @@ public class CommandChooseTime implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse responce) throws Exception {
         String page = null;
-        String selectedDate = request.getParameter(DATE);
         HttpSession session = request.getSession();
+        String selectedDate = request.getParameter(DATE);
+
         String master = (String) session.getAttribute("master");
 
         ChooseTimeService chooseTimeService = ChooseTimeService.getChooseTimeService();
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLL ");
-       // Date date = new Date(selectedDate);
-       // String formatted = new SimpleDateFormat("yyyy-MM-dd").format(date);
+
         Date date = new SimpleDateFormat("EEE MMM dd yyyy").parse(selectedDate);
         List<Integer> freetimes = chooseTimeService.getFreeTimes(master,date);
         session.setAttribute("date", date);
