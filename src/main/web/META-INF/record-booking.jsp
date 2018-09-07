@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: nadezhdavlasenko
@@ -11,6 +12,8 @@
     <title>Title</title>
 </head>
 <body>
+    <c:out value="${user}, Вы записаны на ${service} ${date}!"/>
+    <c:out value="К мастеру ${master}!"/>
 
 </body>
 </html>
