@@ -22,6 +22,13 @@ public class CommandChooseDate implements ICommand {
         return instance;
     }
 
+    /**
+     *
+     * @param request
+     * @param responce
+     * @return
+     * @throws Exception
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse responce) throws Exception {
 

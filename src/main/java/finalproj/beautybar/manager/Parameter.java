@@ -22,9 +22,6 @@ public enum Parameter {
 
     private String param;
 
-    /**
-     * @param param
-     */
     Parameter(String param) {
         this.param = param;
     }
