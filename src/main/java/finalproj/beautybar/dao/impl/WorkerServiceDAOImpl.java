@@ -59,6 +59,11 @@ public class WorkerServiceDAOImpl extends AbstractDAO<Long,WorkerService> implem
     }
 
     @Override
+    public WorkerService findEntityByWorkerIdAndServiceId(Long workerId, Long serviceId) throws Exception {
+        return  findOneByDynamicSelect(SQL_SELECT_FROM + " WHERE IDWORKER = ? AND IDSERVICE = ?", new Object[]{workerId, serviceId});
+    }
+
+    @Override
     public Boolean delete(Long id) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
