@@ -40,8 +40,7 @@ public class CommandFeedbackMasters implements ICommand{
         if (session.getAttribute(Parameter.USER.toString()) == null) {
             page = Config.getInstance().getProperty(Config.LOGIN);
         } else  {
-            List<String> list = new ArrayList<>();
-            list = chooseMasterService.getAllMastersNames();
+            List<String> list = chooseMasterService.getAllMastersNames();
             session.setAttribute(Parameter.MASTERS.toString(), list);
 
             page = Config.getInstance().getProperty(Config.FEEDBACKMASTERS);
